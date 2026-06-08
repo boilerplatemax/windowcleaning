@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Container, SectionHeading, Eyebrow } from "@/components/ui";
+import { Button, Container, SectionHeading } from "@/components/ui";
 import { Icon, Stars, type IconName } from "@/components/Icon";
 import { site } from "@/lib/site";
 
@@ -10,6 +10,7 @@ export default function HomePage() {
       <Hero />
       <TrustBar />
       <WhyUs />
+      <Showcase />
       <Services />
       <HowItWorks />
       <PricingTeaser />
@@ -24,46 +25,49 @@ export default function HomePage() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0">
+    <section className="relative isolate overflow-hidden">
+      <div className="absolute inset-0 -z-10">
         <Image
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80"
-          alt="Bright modern home with spotless windows"
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=2000&q=80"
+          alt="Sunlit modern home with floor-to-ceiling windows and an ocean view"
           fill
           priority
+          sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-paper" />
-        <div className="absolute inset-0 pinstripe opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-paper via-transparent to-transparent" />
       </div>
 
-      <Container className="relative py-24 sm:py-32 lg:py-40">
+      <Container className="relative flex min-h-[86vh] flex-col justify-center py-24 sm:py-28">
         <div className="max-w-2xl">
-          <Eyebrow>Local crew · {site.serviceArea}</Eyebrow>
-          <h1 className="display mt-4 text-5xl font-bold leading-[0.95] text-cream sm:text-6xl lg:text-7xl">
-            Dirty windows?
-            <span className="block text-gold-grad">Forget about it.</span>
+          <span className="eyebrow text-xs text-ocean-soft sm:text-sm">
+            Local crew · {site.serviceArea}
+          </span>
+          <h1 className="display mt-4 text-5xl font-bold leading-[1.02] text-white sm:text-6xl lg:text-7xl">
+            Spotless windows.
+            <span className="block text-ocean-grad">Stunning views.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/80">
-            You&apos;re the boss — you deserve clean windows. Let the Wise Guys
-            do the dirty work. Streak-free shine, honest pricing, and an instant
-            quote in under 60 seconds.
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/85">
+            Professional residential window cleaning across Greater Victoria.
+            Streak-free glass, honest pricing, and an instant quote in under 60
+            seconds — so you can get back to enjoying the view.
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Button href="/quote" size="lg">
               Get Your Instant Quote
             </Button>
-            <Button href={site.phoneHref} variant="outline" size="lg">
+            <Button href={site.phoneHref} variant="outlineLight" size="lg">
               <Icon name="phone" className="h-4 w-4" /> {site.phone}
             </Button>
           </div>
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-cream/70">
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-cream/80">
             <span className="flex items-center gap-2">
-              <Stars className="text-gold-soft" /> Loved by locals
+              <Stars className="text-ocean-soft" /> Loved by locals
             </span>
-            <span className="hidden sm:inline text-gold/40">|</span>
+            <span className="hidden text-ocean-soft/40 sm:inline">|</span>
             <span>No-obligation quote</span>
-            <span className="hidden sm:inline text-gold/40">|</span>
+            <span className="hidden text-ocean-soft/40 sm:inline">|</span>
             <span>Fully insured</span>
           </div>
         </div>
@@ -80,11 +84,11 @@ function TrustBar() {
     { stat: "Insured", label: "& fully bonded" },
   ];
   return (
-    <section className="border-y border-line bg-surface-2">
+    <section className="border-y border-line bg-surface">
       <Container className="grid grid-cols-2 gap-6 py-8 md:grid-cols-4">
         {items.map((i) => (
           <div key={i.label} className="text-center">
-            <p className="display text-2xl font-bold text-gold-deep sm:text-3xl">
+            <p className="display text-2xl font-bold text-ocean-deep sm:text-3xl">
               {i.stat}
             </p>
             <p className="mt-1 text-sm text-ink/60">{i.label}</p>
@@ -99,40 +103,40 @@ function WhyUs() {
   const cards: { icon: IconName; title: string; body: string }[] = [
     {
       icon: "tag",
-      title: "An offer you can't refuse",
-      body: "Upfront, honest pricing with no hidden fees. The number you see is the number you pay. Capisce?",
+      title: "Honest, upfront pricing",
+      body: "Transparent quotes with no hidden fees. The number you see is the number you pay — guaranteed.",
     },
     {
-      icon: "sparkles",
-      title: "We do the dirty work",
-      body: "Inside, outside, screens, tracks, skylights — we make every pane look like a million bucks.",
+      icon: "droplet",
+      title: "Streak-free shine",
+      body: "Professional-grade tools and purified water leave every pane crystal-clear, inside and out.",
     },
     {
-      icon: "heart",
-      title: "Treated like family",
-      body: "Reliable, respectful, and on time. We show up, get it done clean, and leave no trace.",
+      icon: "clock",
+      title: "Reliable & on time",
+      body: "We show up when we say we will, treat your home with care, and leave no trace behind.",
     },
     {
       icon: "shieldCheck",
       title: "Fully insured crew",
-      body: "Bonded and insured for total peace of mind. Your home is in good hands with the family.",
+      body: "Bonded and insured for total peace of mind. Your home is in good, careful hands.",
     },
   ];
   return (
     <section className="py-20 sm:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Why the Wise Guys"
-          title="The cleanest crew in town"
-          subtitle="We keep it playful — but we take your windows seriously."
+          eyebrow="Why Orca"
+          title="Window cleaning, done right"
+          subtitle="A modern, professional crew that takes pride in every pane."
         />
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((c) => (
             <div
               key={c.title}
-              className="rounded-xl border border-line bg-surface p-6 shadow-luxe transition-colors hover:border-gold/50"
+              className="rounded-2xl border border-line bg-surface p-6 shadow-card transition-all hover:-translate-y-1 hover:border-ocean/40"
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-gold/10 text-gold-deep">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-ocean/10 text-ocean-deep">
                 <Icon name={c.icon} className="h-6 w-6" />
               </span>
               <h3 className="display mt-4 text-lg font-semibold text-ink">
@@ -149,43 +153,81 @@ function WhyUs() {
   );
 }
 
+function Showcase() {
+  return (
+    <section className="relative isolate overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=2000&q=80"
+          alt="Bright living room with spotless floor-to-ceiling windows letting in the morning light"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/45 to-transparent" />
+      </div>
+      <Container className="relative flex min-h-[60vh] items-center py-24">
+        <div className="max-w-xl">
+          <span className="eyebrow text-xs text-ocean-soft sm:text-sm">
+            See the difference
+          </span>
+          <h2 className="display mt-3 text-3xl font-bold leading-[1.1] text-white sm:text-4xl lg:text-5xl">
+            Let the light back in
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-cream/85">
+            Grime builds up slowly — you don&apos;t notice until it&apos;s gone.
+            One visit from Orca and your rooms feel brighter, your glass
+            disappears, and the view does the talking.
+          </p>
+          <div className="mt-8">
+            <Button href="/gallery" variant="outlineLight" size="lg">
+              See our work
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 function Services() {
   const services = [
     {
       title: "Exterior Window Cleaning",
-      img: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=800&q=80",
+      img: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=1200&q=80",
       desc: "Spotless, streak-free glass on every outside pane.",
     },
     {
       title: "Interior Window Cleaning",
-      img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
+      img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
       desc: "Crystal-clear views from the comfort of your couch.",
     },
     {
-      title: "Screen, Track & Frame",
-      img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
-      desc: "We get the gunk outta the corners you forgot about.",
+      title: "Screens, Tracks & Frames",
+      img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+      desc: "We clear out the dust and grime from every corner.",
     },
   ];
   return (
     <section className="border-y border-line bg-surface-2 py-20 sm:py-28">
       <Container>
         <SectionHeading
-          eyebrow="The services"
+          eyebrow="Our services"
           title="What we clean"
-          subtitle="Residential window cleaning, done the wise-guy way."
+          subtitle="Professional residential window cleaning, inside and out."
         />
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {services.map((s) => (
             <div
               key={s.title}
-              className="group overflow-hidden rounded-xl border border-line bg-surface shadow-luxe"
+              className="group overflow-hidden rounded-2xl border border-line bg-surface shadow-card"
             >
-              <div className="relative h-52 overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
                 <Image
                   src={s.img}
                   alt={s.title}
                   fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
@@ -222,8 +264,8 @@ function HowItWorks() {
     },
     {
       n: "03",
-      title: "Enjoy the shine",
-      body: "The crew shows up, does the dirty work, and leaves your windows spotless. Forget about it.",
+      title: "Enjoy the view",
+      body: "The crew arrives, cleans every pane, and leaves your windows spotless. Simple as that.",
     },
   ];
   return (
@@ -236,7 +278,7 @@ function HowItWorks() {
         <div className="mt-14 grid gap-8 md:grid-cols-3">
           {steps.map((s, i) => (
             <div key={s.n} className="relative">
-              <span className="display text-5xl font-bold text-gold/30">
+              <span className="display text-5xl font-bold text-ocean/25">
                 {s.n}
               </span>
               <h3 className="display mt-2 text-xl font-semibold text-ink">
@@ -246,7 +288,7 @@ function HowItWorks() {
                 {s.body}
               </p>
               {i < steps.length - 1 && (
-                <span className="absolute right-0 top-6 hidden text-gold/40 md:block">
+                <span className="absolute right-0 top-6 hidden text-ocean/40 md:block">
                   <Icon name="arrowRight" className="h-6 w-6" />
                 </span>
               )}
@@ -260,26 +302,27 @@ function HowItWorks() {
 
 function PricingTeaser() {
   return (
-    <section className="relative overflow-hidden border-y border-smoke">
-      <div className="absolute inset-0">
+    <section className="relative isolate overflow-hidden border-y border-smoke">
+      <div className="absolute inset-0 -z-10">
         <Image
-          src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=80"
-          alt="Clean bright interior"
+          src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=2000&q=80"
+          alt="Modern glass home glowing at dusk"
           fill
+          sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-ink/85" />
-        <div className="absolute inset-0 pinstripe opacity-50" />
+        <div className="absolute inset-0 bg-ink/80" />
+        <div className="absolute inset-0 deep-sea opacity-60" />
       </div>
       <Container className="relative py-20 text-center sm:py-28">
-        <span className="display text-xs sm:text-sm tracking-[0.25em] text-gold-soft">
+        <span className="eyebrow text-xs text-ocean-soft sm:text-sm">
           Honest, upfront pricing
         </span>
-        <h2 className="display mx-auto mt-3 max-w-2xl text-3xl font-bold text-cream sm:text-5xl">
+        <h2 className="display mx-auto mt-3 max-w-2xl text-3xl font-bold text-white sm:text-5xl">
           Quotes starting around{" "}
-          <span className="text-gold-grad">$120</span>
+          <span className="text-ocean-grad">$120</span>
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-cream/75">
+        <p className="mx-auto mt-4 max-w-xl text-cream/80">
           Every home is different, so we give you a real range up front — no
           mystery, no pressure. See your price in under a minute.
         </p>
@@ -297,19 +340,19 @@ function Testimonials() {
   const reviews = [
     {
       quote:
-        "Booked in two minutes and my windows have never looked better. These guys are the real deal.",
+        "Booked in two minutes and my windows have never looked better. Professional, friendly, and spotless.",
       name: "Marie T.",
       area: "Oak Bay",
     },
     {
       quote:
-        "Honest pricing, super friendly crew, and a spotless job. The mob theme made me laugh too.",
+        "Honest pricing, super friendly crew, and a flawless job. You can actually see the ocean from my place now!",
       name: "Dave R.",
       area: "Saanich",
     },
     {
       quote:
-        "Showed up on time, did the inside and out, left zero streaks. An offer I couldn't refuse!",
+        "Showed up on time, did the inside and out, left zero streaks. Easily the best window cleaners we've used.",
       name: "Priya K.",
       area: "Victoria",
     },
@@ -318,22 +361,21 @@ function Testimonials() {
     <section className="border-y border-line bg-surface-2 py-20 sm:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Word on the street"
-          title="The neighbourhood talks"
+          eyebrow="Reviews"
+          title="Loved across the coast"
         />
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {reviews.map((r) => (
             <figure
               key={r.name}
-              className="rounded-xl border border-line bg-surface p-6 shadow-luxe"
+              className="rounded-2xl border border-line bg-surface p-6 shadow-card"
             >
-              <Stars className="text-gold" />
+              <Stars className="text-ocean" />
               <blockquote className="mt-4 text-sm leading-relaxed text-ink/80">
                 &ldquo;{r.quote}&rdquo;
               </blockquote>
-              <figcaption className="display mt-4 text-sm tracking-wide text-gold-deep">
-                {r.name}{" "}
-                <span className="text-ink/45">· {r.area}</span>
+              <figcaption className="display mt-4 text-sm font-semibold text-ocean-deep">
+                {r.name} <span className="text-ink/45">· {r.area}</span>
               </figcaption>
             </figure>
           ))}
@@ -351,7 +393,7 @@ function FAQ() {
     },
     {
       q: "Do you service my area?",
-      a: `We cover ${site.serviceArea}. If you can see the ocean or a Tim Hortons, we've probably cleaned windows nearby.`,
+      a: `We cover ${site.serviceArea}. If you can see the ocean from your place, we've probably cleaned windows nearby.`,
     },
     {
       q: "Are you insured?",
@@ -365,22 +407,22 @@ function FAQ() {
   return (
     <section className="py-20 sm:py-28">
       <Container className="max-w-3xl">
-        <SectionHeading eyebrow="Questions?" title="The lowdown" />
+        <SectionHeading eyebrow="Questions?" title="Good to know" />
         <div className="mt-12 space-y-4">
           {faqs.map((f) => (
             <details
               key={f.q}
-              className="group rounded-xl border border-line bg-surface p-5 shadow-luxe [&_summary::-webkit-details-marker]:hidden"
+              className="group rounded-2xl border border-line bg-surface p-5 shadow-card [&_summary::-webkit-details-marker]:hidden"
             >
               <summary className="flex cursor-pointer items-center justify-between gap-4">
-                <span className="display text-base text-ink">{f.q}</span>
-                <span className="text-gold-deep transition-transform group-open:rotate-45">
+                <span className="display text-base font-medium text-ink">
+                  {f.q}
+                </span>
+                <span className="text-ocean-deep transition-transform group-open:rotate-45">
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-sm leading-relaxed text-ink/70">
-                {f.a}
-              </p>
+              <p className="mt-3 text-sm leading-relaxed text-ink/70">{f.a}</p>
             </details>
           ))}
         </div>
@@ -391,13 +433,13 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="border-t border-smoke bg-ink pinstripe">
+    <section className="deep-sea border-t border-smoke">
       <Container className="py-20 text-center sm:py-24">
-        <h2 className="display mx-auto max-w-2xl text-3xl font-bold text-cream sm:text-4xl">
-          Ready to make your windows look like a million bucks?
+        <h2 className="display mx-auto max-w-2xl text-3xl font-bold text-white sm:text-4xl">
+          Ready to see your view again?
         </h2>
-        <p className="mt-4 text-cream/70">
-          No obligation. Takes under 60 seconds. You&apos;re the boss.
+        <p className="mt-4 text-cream/75">
+          No obligation. Takes under 60 seconds. Streak-free, guaranteed.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button href="/quote" size="lg">
@@ -405,7 +447,7 @@ function FinalCTA() {
           </Button>
           <Link
             href={site.phoneHref}
-            className="display text-cream/80 hover:text-gold"
+            className="display text-cream/85 hover:text-ocean-soft"
           >
             or call {site.phone}
           </Link>

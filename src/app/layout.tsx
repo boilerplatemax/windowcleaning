@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Oswald, Inter } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-const oswald = Oswald({
-  variable: "--font-oswald",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -15,6 +15,9 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
+
+const ogImage =
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -30,7 +33,7 @@ export const metadata: Metadata = {
     "Greater Victoria window cleaners",
     "gutter cleaning",
     "window cleaning quote",
-    "Wise Guys Windows",
+    "Orca Window Cleaning",
   ],
   authors: [{ name: site.name }],
   alternates: { canonical: "/" },
@@ -43,10 +46,10 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1200&q=80",
+        url: ogImage,
         width: 1200,
         height: 630,
-        alt: "Sparkling clean windows by Wise Guys Windows",
+        alt: "Sparkling clean windows by Orca Window Cleaning",
       },
     ],
   },
@@ -62,8 +65,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: site.name,
-  image:
-    "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1200&q=80",
+  image: ogImage,
   description: site.description,
   url: site.url,
   telephone: site.phone,
@@ -88,7 +90,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${oswald.variable} ${inter.variable} h-full antialiased`}
+      className={`${poppins.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <script

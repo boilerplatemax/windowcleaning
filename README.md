@@ -1,17 +1,17 @@
-# Wise Guys Windows
+# Orca Window Cleaning
 
-A sleek, SEO-optimized Next.js website for **Wise Guys Windows** — a residential
-window cleaning business in Greater Victoria, BC with a fun, playful mob/mafia
-theme ("Dirty windows? Forget about it.").
+A sleek, modern, SEO-optimized Next.js website for **Orca Window Cleaning** — a
+residential window cleaning business in Greater Victoria, BC with a clean,
+coastal brand ("Spotless windows. Stunning views.").
 
 Built with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS v4** and
-**SendGrid** (email notifications). A light, airy theme with gold accents and a
-dark navbar/footer for contrast.
+**SendGrid** (email notifications). A bright, light theme with ocean-blue
+accents, big imagery, and a deep-ocean footer for contrast.
 
 ## Features
 
-- **Playful mafia theme** — light "speakeasy" design with gold accents, fully
-  responsive.
+- **Modern coastal theme** — light, airy design with ocean-blue accents and
+  large, edge-to-edge photography, fully responsive.
 - **Instant quote wizard** — a 5-step, idiot-proof flow that produces a price
   range + recommended midpoint in under 60 seconds. No window/pane jargon.
 - **Rule-based pricing engine** (`src/lib/pricing.ts`) tuned for Victoria, BC

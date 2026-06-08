@@ -92,16 +92,14 @@ export function QuoteWizard() {
       {/* Progress */}
       <div className="mb-8">
         <div className="mb-2 flex items-center justify-between">
-          <span className="display text-xs tracking-[0.2em] text-gold">
+          <span className="eyebrow text-xs text-ocean-deep">
             Step {step} of {TOTAL_STEPS}
           </span>
-          <span className="display text-xs tracking-[0.2em] text-ink/50">
-            ~60 seconds
-          </span>
+          <span className="eyebrow text-xs text-ink/50">~60 seconds</span>
         </div>
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
           <div
-            className="h-full gold-grad transition-all duration-500"
+            className="h-full ocean-grad transition-all duration-500"
             style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
           />
         </div>
@@ -109,24 +107,24 @@ export function QuoteWizard() {
 
       <div
         key={step}
-        className="animate-fade-up rounded-2xl border border-line bg-surface p-6 shadow-luxe sm:p-9"
+        className="animate-fade-up rounded-3xl border border-line bg-surface p-6 shadow-luxe sm:p-9"
       >
         {/* STEP 1 — Address */}
         {step === 1 && (
           <div className="space-y-5">
             <StepHeader
-              kicker="Where's the joint?"
+              kicker="Where are we headed?"
               title="What's your address?"
-              sub="We'll confirm you're in our turf and size things up."
+              sub="We'll confirm you're in our service area and size things up."
             />
             <AddressInput
               value={input.address}
               onChange={(v) => set("address", v)}
             />
             {input.address.trim().length > 3 && (
-              <div className="flex items-center gap-2 rounded-md border border-gold/30 bg-gold/10 px-4 py-3 text-sm text-gold-deep">
+              <div className="flex items-center gap-2 rounded-xl border border-ocean/30 bg-ocean/10 px-4 py-3 text-sm text-ocean-deep">
                 <span>✓</span>
-                <span>Nice — looks like we service your area. Capisce.</span>
+                <span>Nice — looks like we service your area.</span>
               </div>
             )}
           </div>
@@ -137,7 +135,7 @@ export function QuoteWizard() {
           <div className="space-y-7">
             <div>
               <StepHeader
-                kicker="The setup"
+                kicker="The basics"
                 title="What kind of place is it?"
               />
               <div className="mt-4 grid grid-cols-3 gap-3">
@@ -163,7 +161,7 @@ export function QuoteWizard() {
             </div>
 
             <div>
-              <p className="display text-sm tracking-wide text-ink">
+              <p className="display text-sm font-medium text-ink">
                 How many floors?
               </p>
               <div className="mt-3 grid grid-cols-3 gap-3">
@@ -186,7 +184,7 @@ export function QuoteWizard() {
             </div>
 
             <div>
-              <p className="display text-sm tracking-wide text-ink">
+              <p className="display text-sm font-medium text-ink">
                 Lots of big windows or glass doors?
               </p>
               <div className="mt-3 grid grid-cols-3 gap-3">
@@ -198,7 +196,7 @@ export function QuoteWizard() {
                 <OptionCard
                   selected={input.largeWindows === "yes"}
                   onClick={() => set("largeWindows", "yes")}
-                  title="Yeah"
+                  title="Yes"
                 />
                 <OptionCard
                   selected={input.largeWindows === "unsure"}
@@ -245,14 +243,14 @@ export function QuoteWizard() {
             <button
               type="button"
               onClick={() => setAdvanced((v) => !v)}
-              className="text-sm text-gold-deep underline-offset-4 hover:underline"
+              className="text-sm text-ocean-deep underline-offset-4 hover:underline"
             >
               {advanced ? "Hide" : "I'd rather estimate windows myself"}
             </button>
 
             {advanced && (
-              <div className="rounded-lg border border-line bg-surface-2 p-4">
-                <label className="display text-sm tracking-wide text-ink">
+              <div className="rounded-xl border border-line bg-surface-2 p-4">
+                <label className="display text-sm font-medium text-ink">
                   Approx. number of windows
                 </label>
                 <input
@@ -266,7 +264,7 @@ export function QuoteWizard() {
                     )
                   }
                   placeholder="e.g. 15 (leave blank if not sure)"
-                  className="mt-2 w-full rounded-md border border-line bg-surface px-4 py-3 text-ink placeholder:text-ink/40 focus:border-gold"
+                  className="mt-2 w-full rounded-lg border border-line bg-surface px-4 py-3 text-ink placeholder:text-ink/40 focus:border-ocean"
                 />
                 <p className="mt-2 text-xs text-ink/50">
                   Windows, not panes. A guess is totally fine.
@@ -298,7 +296,7 @@ export function QuoteWizard() {
             </div>
 
             <div>
-              <p className="display text-sm tracking-wide text-ink">
+              <p className="display text-sm font-medium text-ink">
                 Want the works? <span className="text-ink/50">(optional)</span>
               </p>
               <div className="mt-3 space-y-3">
@@ -307,21 +305,21 @@ export function QuoteWizard() {
                   onClick={() => set("screens", !input.screens)}
                   icon="🪟"
                   title="Screen cleaning"
-                  subtitle="Pop 'em out, wash 'em up"
+                  subtitle="Popped out, washed, and refitted"
                 />
                 <CheckCard
                   checked={input.tracks}
                   onClick={() => set("tracks", !input.tracks)}
                   icon="🧽"
                   title="Track & frame wipe"
-                  subtitle="Get the gunk outta the corners"
+                  subtitle="Clear out every corner"
                 />
                 <CheckCard
                   checked={input.skylights}
                   onClick={() => set("skylights", !input.skylights)}
                   icon="☀️"
                   title="Skylights"
-                  subtitle="The ones up top"
+                  subtitle="The hard-to-reach ones up top"
                 />
               </div>
             </div>
@@ -343,7 +341,7 @@ export function QuoteWizard() {
                 label="Name"
                 value={contact.name}
                 onChange={(v) => setContact((p) => ({ ...p, name: v }))}
-                placeholder="Vito Corleone"
+                placeholder="Jordan Smith"
                 required
               />
               <Field
@@ -363,11 +361,11 @@ export function QuoteWizard() {
               />
 
               <div>
-                <label className="display text-sm tracking-wide text-ink">
+                <label className="display text-sm font-medium text-ink">
                   Upload photos{" "}
                   <span className="text-ink/50">(recommended)</span>
                 </label>
-                <label className="mt-2 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-line bg-surface-2 px-4 py-6 text-center hover:border-gold/50">
+                <label className="mt-2 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-line bg-surface-2 px-4 py-6 text-center hover:border-ocean/50">
                   <span className="text-2xl">📸</span>
                   <span className="text-sm text-ink/70">
                     {photoNames.length > 0
@@ -391,7 +389,7 @@ export function QuoteWizard() {
                 </label>
               </div>
 
-              <p className="rounded-md border border-gold/20 bg-gold/10 px-4 py-3 text-sm text-ink/80">
+              <p className="rounded-xl border border-ocean/20 bg-ocean/10 px-4 py-3 text-sm text-ink/80">
                 We&apos;ll review and confirm your final price within 24 hours.
               </p>
             </div>
@@ -403,7 +401,7 @@ export function QuoteWizard() {
           {step > 1 ? (
             <button
               onClick={back}
-              className="display text-sm tracking-wide text-ink/60 hover:text-gold-deep"
+              className="display text-sm font-medium text-ink/60 hover:text-ocean-deep"
             >
               ← Back
             </button>
@@ -416,9 +414,9 @@ export function QuoteWizard() {
               onClick={next}
               disabled={!canContinue()}
               className={clsx(
-                "display rounded-sm px-7 py-3 text-sm font-semibold uppercase tracking-wide transition-all",
+                "display rounded-full px-7 py-3 text-sm font-semibold transition-all",
                 canContinue()
-                  ? "bg-gold text-ink hover:bg-gold-soft"
+                  ? "ocean-grad text-white hover:brightness-105"
                   : "cursor-not-allowed bg-surface-2 text-ink/40",
               )}
             >
@@ -431,13 +429,13 @@ export function QuoteWizard() {
               onClick={submit}
               disabled={!canContinue() || submitting}
               className={clsx(
-                "display rounded-sm px-7 py-3 text-sm font-semibold uppercase tracking-wide transition-all",
+                "display rounded-full px-7 py-3 text-sm font-semibold transition-all",
                 canContinue() && !submitting
-                  ? "bg-gold text-ink hover:bg-gold-soft"
+                  ? "ocean-grad text-white hover:brightness-105"
                   : "cursor-not-allowed bg-surface-2 text-ink/40",
               )}
             >
-              {submitting ? "Crunching numbers…" : "Get My Price 💰"}
+              {submitting ? "Crunching numbers…" : "Get My Price"}
             </button>
           )}
         </div>
@@ -461,9 +459,7 @@ function StepHeader({
 }) {
   return (
     <div>
-      <span className="display text-xs tracking-[0.2em] text-gold-deep">
-        {kicker}
-      </span>
+      <span className="eyebrow text-xs text-ocean-deep">{kicker}</span>
       <h2 className="display mt-1 text-2xl font-bold text-ink sm:text-3xl">
         {title}
       </h2>
@@ -489,16 +485,16 @@ function Field({
 }) {
   return (
     <div>
-      <label className="display text-sm tracking-wide text-ink">
+      <label className="display text-sm font-medium text-ink">
         {label}
-        {required && <span className="text-gold-deep"> *</span>}
+        {required && <span className="text-ocean-deep"> *</span>}
       </label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="mt-2 w-full rounded-md border border-line bg-surface px-4 py-3 text-ink placeholder:text-ink/40 focus:border-gold"
+        className="mt-2 w-full rounded-lg border border-line bg-surface px-4 py-3 text-ink placeholder:text-ink/40 focus:border-ocean"
       />
     </div>
   );
@@ -506,10 +502,8 @@ function Field({
 
 function PricePreview({ low, high }: { low: number; high: number }) {
   return (
-    <div className="rounded-lg border border-gold/30 bg-gold/10 px-5 py-4 text-center">
-      <p className="display text-xs tracking-[0.2em] text-gold-deep">
-        Running estimate
-      </p>
+    <div className="rounded-xl border border-ocean/30 bg-ocean/10 px-5 py-4 text-center">
+      <p className="eyebrow text-xs text-ocean-deep">Running estimate</p>
       <p className="display mt-1 text-2xl font-bold text-ink">
         ${low} – ${high}{" "}
         <span className="text-sm font-normal text-ink/50">CAD</span>

@@ -1,13 +1,13 @@
-// Central business / brand configuration for Wise Guys Windows.
+// Central business / brand configuration for Orca Window Cleaning.
 // Update these values in one place and the whole site follows.
 
 export const site = {
-  name: "Wise Guys Windows",
-  shortName: "Wise Guys",
-  tagline: "Dirty Windows? Forget about it.",
+  name: "Orca Window Cleaning",
+  shortName: "Orca",
+  tagline: "Spotless windows. Stunning views.",
   description:
-    "Wise Guys Windows is Victoria BC's residential window cleaning crew. Streak-free shine, honest pricing, and an instant online quote in under 60 seconds.",
-  url: "https://wiseguyswindows.ca",
+    "Orca Window Cleaning delivers streak-free, professional residential window cleaning across Greater Victoria, BC. Honest pricing and an instant online quote in under 60 seconds.",
+  url: "https://orcawindowcleaning.ca",
   phone: "416-579-3253",
   phoneHref: "tel:+14165793253",
   email: "mshapovalov7@gmail.com",

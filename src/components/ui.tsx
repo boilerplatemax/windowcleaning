@@ -4,7 +4,7 @@ import { clsx } from "@/lib/clsx";
 type ButtonProps = {
   href?: string;
   children: React.ReactNode;
-  variant?: "gold" | "outline" | "dark";
+  variant?: "ocean" | "outline" | "outlineLight" | "dark";
   size?: "md" | "lg";
   className?: string;
   type?: "button" | "submit";
@@ -13,12 +13,15 @@ type ButtonProps = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 font-display uppercase tracking-wide rounded-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
+  "inline-flex items-center justify-center gap-2 font-display font-semibold rounded-full transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
 
 const variants = {
-  gold: "bg-gold text-ink font-semibold hover:bg-gold-soft shadow-luxe",
+  ocean:
+    "ocean-grad text-white shadow-luxe hover:brightness-105 hover:-translate-y-0.5",
   outline:
-    "border border-gold/70 text-gold-deep hover:bg-gold hover:text-ink",
+    "border border-ocean/40 text-ocean-deep hover:bg-ocean hover:text-white hover:border-ocean",
+  outlineLight:
+    "border border-white/50 text-white hover:bg-white hover:text-ink hover:border-white",
   dark: "bg-ink text-cream border border-ink hover:bg-noir",
 };
 
@@ -30,7 +33,7 @@ const sizes = {
 export function Button({
   href,
   children,
-  variant = "gold",
+  variant = "ocean",
   size = "md",
   className,
   type = "button",
@@ -54,7 +57,7 @@ export function Button({
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="display text-xs sm:text-sm tracking-[0.25em] text-gold-deep">
+    <span className="eyebrow text-xs sm:text-sm text-ocean-deep">
       {children}
     </span>
   );
@@ -83,7 +86,7 @@ export function SectionHeading({
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
       <h2
         className={clsx(
-          "display mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.05]",
+          "display mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.08]",
           onDark ? "text-cream" : "text-ink",
         )}
       >
