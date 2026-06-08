@@ -24,13 +24,13 @@ const photos = [
 export default function GalleryPage() {
   return (
     <>
-      <section className="border-b border-smoke bg-noir py-16 sm:py-24">
+      <section className="border-b border-line bg-surface-2 py-16 sm:py-24">
         <Container className="text-center">
           <Eyebrow>The portfolio</Eyebrow>
-          <h1 className="display mt-3 text-4xl font-bold text-cream sm:text-6xl">
+          <h1 className="display mt-3 text-4xl font-bold text-ink sm:text-6xl">
             Our handiwork
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-cream/70">
+          <p className="mx-auto mt-4 max-w-2xl text-ink/70">
             A few homes we&apos;ve made shine. Yours could be next.
           </p>
         </Container>
@@ -42,7 +42,7 @@ export default function GalleryPage() {
             {photos.map((src, i) => (
               <div
                 key={i}
-                className="overflow-hidden rounded-xl border border-smoke"
+                className="overflow-hidden rounded-xl border border-line shadow-luxe"
               >
                 <Image
                   src={src}

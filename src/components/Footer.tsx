@@ -4,7 +4,7 @@ import { Logo } from "@/components/Logo";
 
 export function Footer() {
   return (
-    <footer className="border-t border-smoke bg-noir pinstripe">
+    <footer className="border-t border-smoke bg-ink pinstripe">
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">

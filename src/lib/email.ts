@@ -58,7 +58,7 @@ export async function sendQuoteEmail(payload: {
   const html = `
   <div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;background:#141418;color:#f6f1e4;border-radius:12px;overflow:hidden;border:1px solid #2a2a32;">
     <div style="background:#d4af37;color:#0b0b0d;padding:20px;text-align:center;">
-      <h1 style="margin:0;font-size:20px;">🕴️ New Quote Request</h1>
+      <h1 style="margin:0;font-size:20px;">New Quote Request</h1>
       <p style="margin:6px 0 0;font-size:14px;">${site.name}</p>
     </div>
     <div style="padding:24px;text-align:center;">

@@ -16,10 +16,10 @@ const base =
   "inline-flex items-center justify-center gap-2 font-display uppercase tracking-wide rounded-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
 
 const variants = {
-  gold: "gold-grad text-ink font-semibold hover:brightness-110 shadow-luxe",
+  gold: "bg-gold text-ink font-semibold hover:bg-gold-soft shadow-luxe",
   outline:
-    "border border-gold/60 text-gold hover:bg-gold hover:text-ink",
-  dark: "bg-charcoal text-cream border border-smoke hover:border-gold/50",
+    "border border-gold/70 text-gold-deep hover:bg-gold hover:text-ink",
+  dark: "bg-ink text-cream border border-ink hover:bg-noir",
 };
 
 const sizes = {
@@ -54,7 +54,7 @@ export function Button({
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="display text-xs sm:text-sm tracking-[0.25em] text-gold">
+    <span className="display text-xs sm:text-sm tracking-[0.25em] text-gold-deep">
       {children}
     </span>
   );
@@ -65,13 +65,13 @@ export function SectionHeading({
   title,
   subtitle,
   align = "center",
-  light = false,
+  onDark = false,
 }: {
   eyebrow?: string;
   title: React.ReactNode;
   subtitle?: React.ReactNode;
   align?: "center" | "left";
-  light?: boolean;
+  onDark?: boolean;
 }) {
   return (
     <div
@@ -84,7 +84,7 @@ export function SectionHeading({
       <h2
         className={clsx(
           "display mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.05]",
-          light ? "text-ink" : "text-cream",
+          onDark ? "text-cream" : "text-ink",
         )}
       >
         {title}
@@ -93,7 +93,7 @@ export function SectionHeading({
         <p
           className={clsx(
             "mt-4 text-base sm:text-lg leading-relaxed",
-            light ? "text-ink/70" : "text-cream/70",
+            onDark ? "text-cream/70" : "text-ink/65",
           )}
         >
           {subtitle}
