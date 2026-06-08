@@ -1,0 +1,104 @@
+import type { Metadata } from "next";
+import { Oswald, Inter } from "next/font/google";
+import "./globals.css";
+import { site } from "@/lib/site";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} — Window Cleaning in ${site.serviceArea}`,
+    template: `%s | ${site.name}`,
+  },
+  description: site.description,
+  keywords: [
+    "window cleaning Victoria BC",
+    "residential window cleaning",
+    "window washing Victoria",
+    "Greater Victoria window cleaners",
+    "gutter cleaning",
+    "window cleaning quote",
+    "Wise Guys Windows",
+  ],
+  authors: [{ name: site.name }],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_CA",
+    url: site.url,
+    siteName: site.name,
+    title: `${site.name} — ${site.tagline}`,
+    description: site.description,
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1200&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Sparkling clean windows by Wise Guys Windows",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.tagline}`,
+    description: site.description,
+  },
+  robots: { index: true, follow: true },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: site.name,
+  image:
+    "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1200&q=80",
+  description: site.description,
+  url: site.url,
+  telephone: site.phone,
+  email: site.email,
+  priceRange: "$$",
+  areaServed: site.serviceArea,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Victoria",
+    addressRegion: "BC",
+    addressCountry: "CA",
+  },
+  openingHours: "Mo-Sa 08:00-18:00",
+  sameAs: [site.social.instagram, site.social.facebook],
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${oswald.variable} ${inter.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-ink text-cream">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}
