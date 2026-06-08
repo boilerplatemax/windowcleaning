@@ -24,14 +24,14 @@ export function OptionCard({
         "group flex w-full flex-col items-center gap-2 rounded-lg border p-5 text-center transition-all duration-200",
         selected
           ? "border-gold bg-gold/10 shadow-luxe"
-          : "border-smoke bg-charcoal hover:border-gold/50",
+          : "border-line bg-surface hover:border-gold/50",
       )}
     >
       {icon && (
         <span
           className={clsx(
             "text-3xl transition-transform group-hover:scale-110",
-            selected ? "text-gold" : "text-cream/70",
+            selected ? "text-gold-deep" : "text-ink/60",
           )}
         >
           {icon}
@@ -40,13 +40,13 @@ export function OptionCard({
       <span
         className={clsx(
           "display text-base tracking-wide",
-          selected ? "text-gold" : "text-cream",
+          selected ? "text-gold-deep" : "text-ink",
         )}
       >
         {title}
       </span>
       {subtitle && (
-        <span className="text-xs leading-snug text-cream/55">{subtitle}</span>
+        <span className="text-xs leading-snug text-ink/55">{subtitle}</span>
       )}
     </button>
   );
@@ -74,13 +74,13 @@ export function CheckCard({
         "flex w-full items-center gap-4 rounded-lg border p-4 text-left transition-all",
         checked
           ? "border-gold bg-gold/10"
-          : "border-smoke bg-charcoal hover:border-gold/50",
+          : "border-line bg-surface hover:border-gold/50",
       )}
     >
       <span
         className={clsx(
           "flex h-6 w-6 shrink-0 items-center justify-center rounded border",
-          checked ? "border-gold bg-gold text-ink" : "border-cream/40 text-transparent",
+          checked ? "border-gold bg-gold text-ink" : "border-ink/30 text-transparent",
         )}
       >
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={3}>
@@ -89,11 +89,11 @@ export function CheckCard({
       </span>
       {icon && <span className="text-2xl">{icon}</span>}
       <span className="flex-1">
-        <span className="display block text-sm tracking-wide text-cream">
+        <span className="display block text-sm tracking-wide text-ink">
           {title}
         </span>
         {subtitle && (
-          <span className="block text-xs text-cream/55">{subtitle}</span>
+          <span className="block text-xs text-ink/55">{subtitle}</span>
         )}
       </span>
     </button>

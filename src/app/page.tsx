@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button, Container, SectionHeading, Eyebrow } from "@/components/ui";
+import { Icon, Stars, type IconName } from "@/components/Icon";
 import { site } from "@/lib/site";
 
 export default function HomePage() {
@@ -32,16 +33,16 @@ function Hero() {
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/75 to-ink" />
-        <div className="absolute inset-0 pinstripe opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-paper" />
+        <div className="absolute inset-0 pinstripe opacity-50" />
       </div>
 
       <Container className="relative py-24 sm:py-32 lg:py-40">
         <div className="max-w-2xl">
-          <Eyebrow>Family-run · {site.serviceArea}</Eyebrow>
+          <Eyebrow>Local crew · {site.serviceArea}</Eyebrow>
           <h1 className="display mt-4 text-5xl font-bold leading-[0.95] text-cream sm:text-6xl lg:text-7xl">
             Dirty windows?
-            <span className="block text-gold-grad">Fuhgeddaboudit.</span>
+            <span className="block text-gold-grad">Forget about it.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/80">
             You&apos;re the boss — you deserve clean windows. Let the Wise Guys
@@ -53,11 +54,13 @@ function Hero() {
               Get Your Instant Quote
             </Button>
             <Button href={site.phoneHref} variant="outline" size="lg">
-              📞 {site.phone}
+              <Icon name="phone" className="h-4 w-4" /> {site.phone}
             </Button>
           </div>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-cream/70">
-            <span>★★★★★ Loved by locals</span>
+            <span className="flex items-center gap-2">
+              <Stars className="text-gold-soft" /> Loved by locals
+            </span>
             <span className="hidden sm:inline text-gold/40">|</span>
             <span>No-obligation quote</span>
             <span className="hidden sm:inline text-gold/40">|</span>
@@ -77,14 +80,14 @@ function TrustBar() {
     { stat: "Insured", label: "& fully bonded" },
   ];
   return (
-    <section className="border-y border-smoke bg-noir">
+    <section className="border-y border-line bg-surface-2">
       <Container className="grid grid-cols-2 gap-6 py-8 md:grid-cols-4">
         {items.map((i) => (
           <div key={i.label} className="text-center">
-            <p className="display text-2xl font-bold text-gold sm:text-3xl">
+            <p className="display text-2xl font-bold text-gold-deep sm:text-3xl">
               {i.stat}
             </p>
-            <p className="mt-1 text-sm text-cream/60">{i.label}</p>
+            <p className="mt-1 text-sm text-ink/60">{i.label}</p>
           </div>
         ))}
       </Container>
@@ -93,24 +96,24 @@ function TrustBar() {
 }
 
 function WhyUs() {
-  const cards = [
+  const cards: { icon: IconName; title: string; body: string }[] = [
     {
-      icon: "🤝",
+      icon: "tag",
       title: "An offer you can't refuse",
       body: "Upfront, honest pricing with no hidden fees. The number you see is the number you pay. Capisce?",
     },
     {
-      icon: "✨",
+      icon: "sparkles",
       title: "We do the dirty work",
       body: "Inside, outside, screens, tracks, skylights — we make every pane look like a million bucks.",
     },
     {
-      icon: "🕴️",
+      icon: "heart",
       title: "Treated like family",
       body: "Reliable, respectful, and on time. We show up, get it done clean, and leave no trace.",
     },
     {
-      icon: "🛡️",
+      icon: "shieldCheck",
       title: "Fully insured crew",
       body: "Bonded and insured for total peace of mind. Your home is in good hands with the family.",
     },
@@ -127,13 +130,15 @@ function WhyUs() {
           {cards.map((c) => (
             <div
               key={c.title}
-              className="rounded-xl border border-smoke bg-noir p-6 transition-colors hover:border-gold/40"
+              className="rounded-xl border border-line bg-surface p-6 shadow-luxe transition-colors hover:border-gold/50"
             >
-              <span className="text-3xl">{c.icon}</span>
-              <h3 className="display mt-4 text-lg font-semibold text-cream">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-gold/10 text-gold-deep">
+                <Icon name={c.icon} className="h-6 w-6" />
+              </span>
+              <h3 className="display mt-4 text-lg font-semibold text-ink">
                 {c.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-cream/65">
+              <p className="mt-2 text-sm leading-relaxed text-ink/65">
                 {c.body}
               </p>
             </div>
@@ -163,7 +168,7 @@ function Services() {
     },
   ];
   return (
-    <section className="border-t border-smoke bg-noir py-20 sm:py-28">
+    <section className="border-y border-line bg-surface-2 py-20 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="The services"
@@ -174,7 +179,7 @@ function Services() {
           {services.map((s) => (
             <div
               key={s.title}
-              className="group overflow-hidden rounded-xl border border-smoke bg-charcoal"
+              className="group overflow-hidden rounded-xl border border-line bg-surface shadow-luxe"
             >
               <div className="relative h-52 overflow-hidden">
                 <Image
@@ -183,13 +188,12 @@ function Services() {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent" />
               </div>
               <div className="p-6">
-                <h3 className="display text-lg font-semibold text-cream">
+                <h3 className="display text-lg font-semibold text-ink">
                   {s.title}
                 </h3>
-                <p className="mt-2 text-sm text-cream/65">{s.desc}</p>
+                <p className="mt-2 text-sm text-ink/65">{s.desc}</p>
               </div>
             </div>
           ))}
@@ -219,7 +223,7 @@ function HowItWorks() {
     {
       n: "03",
       title: "Enjoy the shine",
-      body: "The crew shows up, does the dirty work, and leaves your windows spotless. Fuhgeddaboudit.",
+      body: "The crew shows up, does the dirty work, and leaves your windows spotless. Forget about it.",
     },
   ];
   return (
@@ -232,18 +236,18 @@ function HowItWorks() {
         <div className="mt-14 grid gap-8 md:grid-cols-3">
           {steps.map((s, i) => (
             <div key={s.n} className="relative">
-              <span className="display text-5xl font-bold text-gold/25">
+              <span className="display text-5xl font-bold text-gold/30">
                 {s.n}
               </span>
-              <h3 className="display mt-2 text-xl font-semibold text-cream">
+              <h3 className="display mt-2 text-xl font-semibold text-ink">
                 {s.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-cream/65">
+              <p className="mt-2 text-sm leading-relaxed text-ink/65">
                 {s.body}
               </p>
               {i < steps.length - 1 && (
-                <span className="absolute right-0 top-6 hidden text-gold/30 md:block">
-                  →
+                <span className="absolute right-0 top-6 hidden text-gold/40 md:block">
+                  <Icon name="arrowRight" className="h-6 w-6" />
                 </span>
               )}
             </div>
@@ -268,7 +272,9 @@ function PricingTeaser() {
         <div className="absolute inset-0 pinstripe opacity-50" />
       </div>
       <Container className="relative py-20 text-center sm:py-28">
-        <Eyebrow>Honest, upfront pricing</Eyebrow>
+        <span className="display text-xs sm:text-sm tracking-[0.25em] text-gold-soft">
+          Honest, upfront pricing
+        </span>
         <h2 className="display mx-auto mt-3 max-w-2xl text-3xl font-bold text-cream sm:text-5xl">
           Quotes starting around{" "}
           <span className="text-gold-grad">$120</span>
@@ -309,7 +315,7 @@ function Testimonials() {
     },
   ];
   return (
-    <section className="bg-noir py-20 sm:py-28">
+    <section className="border-y border-line bg-surface-2 py-20 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="Word on the street"
@@ -319,15 +325,15 @@ function Testimonials() {
           {reviews.map((r) => (
             <figure
               key={r.name}
-              className="rounded-xl border border-smoke bg-charcoal p-6"
+              className="rounded-xl border border-line bg-surface p-6 shadow-luxe"
             >
-              <div className="text-gold">★★★★★</div>
-              <blockquote className="mt-4 text-sm leading-relaxed text-cream/80">
+              <Stars className="text-gold" />
+              <blockquote className="mt-4 text-sm leading-relaxed text-ink/80">
                 &ldquo;{r.quote}&rdquo;
               </blockquote>
-              <figcaption className="display mt-4 text-sm tracking-wide text-gold">
+              <figcaption className="display mt-4 text-sm tracking-wide text-gold-deep">
                 {r.name}{" "}
-                <span className="text-cream/45">· {r.area}</span>
+                <span className="text-ink/45">· {r.area}</span>
               </figcaption>
             </figure>
           ))}
@@ -364,15 +370,15 @@ function FAQ() {
           {faqs.map((f) => (
             <details
               key={f.q}
-              className="group rounded-xl border border-smoke bg-noir p-5 [&_summary::-webkit-details-marker]:hidden"
+              className="group rounded-xl border border-line bg-surface p-5 shadow-luxe [&_summary::-webkit-details-marker]:hidden"
             >
               <summary className="flex cursor-pointer items-center justify-between gap-4">
-                <span className="display text-base text-cream">{f.q}</span>
-                <span className="text-gold transition-transform group-open:rotate-45">
+                <span className="display text-base text-ink">{f.q}</span>
+                <span className="text-gold-deep transition-transform group-open:rotate-45">
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-sm leading-relaxed text-cream/70">
+              <p className="mt-3 text-sm leading-relaxed text-ink/70">
                 {f.a}
               </p>
             </details>
@@ -385,7 +391,7 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="border-t border-smoke bg-noir pinstripe">
+    <section className="border-t border-smoke bg-ink pinstripe">
       <Container className="py-20 text-center sm:py-24">
         <h2 className="display mx-auto max-w-2xl text-3xl font-bold text-cream sm:text-4xl">
           Ready to make your windows look like a million bucks?

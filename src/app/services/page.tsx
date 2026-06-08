@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Button, Container, SectionHeading, Eyebrow } from "@/components/ui";
+import { Icon } from "@/components/Icon";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -44,7 +45,7 @@ const services = [
   {
     title: "Regular Maintenance Plans",
     img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80",
-    body: "Keep that million-dollar shine year-round with a recurring plan. Set it once and fuhgeddaboudit.",
+    body: "Keep that million-dollar shine year-round with a recurring plan. Set it once and forget about it.",
     points: ["Monthly / quarterly", "Priority booking", "Loyal-customer pricing"],
   },
 ];
@@ -52,13 +53,13 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
-      <section className="border-b border-smoke bg-noir py-16 sm:py-24">
+      <section className="border-b border-line bg-surface-2 py-16 sm:py-24">
         <Container className="text-center">
           <Eyebrow>The full menu</Eyebrow>
-          <h1 className="display mt-3 text-4xl font-bold text-cream sm:text-6xl">
+          <h1 className="display mt-3 text-4xl font-bold text-ink sm:text-6xl">
             Services that shine
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-cream/70">
+          <p className="mx-auto mt-4 max-w-2xl text-ink/70">
             From a quick exterior refresh to the full white-glove treatment, the
             Wise Guys do the dirty work so you don&apos;t have to.
           </p>
@@ -71,7 +72,7 @@ export default function ServicesPage() {
             {services.map((s) => (
               <article
                 key={s.title}
-                className="group overflow-hidden rounded-xl border border-smoke bg-noir"
+                className="group overflow-hidden rounded-xl border border-line bg-surface shadow-luxe"
               >
                 <div className="relative h-48 overflow-hidden">
                   <Image
@@ -82,19 +83,20 @@ export default function ServicesPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <h2 className="display text-xl font-semibold text-cream">
+                  <h2 className="display text-xl font-semibold text-ink">
                     {s.title}
                   </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-cream/65">
+                  <p className="mt-2 text-sm leading-relaxed text-ink/65">
                     {s.body}
                   </p>
                   <ul className="mt-4 space-y-1.5">
                     {s.points.map((p) => (
                       <li
                         key={p}
-                        className="flex items-center gap-2 text-sm text-cream/75"
+                        className="flex items-center gap-2 text-sm text-ink/75"
                       >
-                        <span className="text-gold">✓</span> {p}
+                        <Icon name="check" className="h-4 w-4 text-gold-deep" />{" "}
+                        {p}
                       </li>
                     ))}
                   </ul>
@@ -105,7 +107,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      <section className="border-t border-smoke bg-noir pinstripe">
+      <section className="border-t border-line bg-surface-2">
         <Container className="py-16 text-center sm:py-20">
           <SectionHeading
             title="Not sure what you need?"

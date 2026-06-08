@@ -95,11 +95,11 @@ export function QuoteWizard() {
           <span className="display text-xs tracking-[0.2em] text-gold">
             Step {step} of {TOTAL_STEPS}
           </span>
-          <span className="display text-xs tracking-[0.2em] text-cream/50">
+          <span className="display text-xs tracking-[0.2em] text-ink/50">
             ~60 seconds
           </span>
         </div>
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-charcoal">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
           <div
             className="h-full gold-grad transition-all duration-500"
             style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
@@ -109,7 +109,7 @@ export function QuoteWizard() {
 
       <div
         key={step}
-        className="animate-fade-up rounded-2xl border border-smoke bg-noir p-6 shadow-luxe sm:p-9"
+        className="animate-fade-up rounded-2xl border border-line bg-surface p-6 shadow-luxe sm:p-9"
       >
         {/* STEP 1 — Address */}
         {step === 1 && (
@@ -124,7 +124,7 @@ export function QuoteWizard() {
               onChange={(v) => set("address", v)}
             />
             {input.address.trim().length > 3 && (
-              <div className="flex items-center gap-2 rounded-md border border-gold/30 bg-gold/5 px-4 py-3 text-sm text-gold">
+              <div className="flex items-center gap-2 rounded-md border border-gold/30 bg-gold/10 px-4 py-3 text-sm text-gold-deep">
                 <span>✓</span>
                 <span>Nice — looks like we service your area. Capisce.</span>
               </div>
@@ -163,7 +163,7 @@ export function QuoteWizard() {
             </div>
 
             <div>
-              <p className="display text-sm tracking-wide text-cream">
+              <p className="display text-sm tracking-wide text-ink">
                 How many floors?
               </p>
               <div className="mt-3 grid grid-cols-3 gap-3">
@@ -186,7 +186,7 @@ export function QuoteWizard() {
             </div>
 
             <div>
-              <p className="display text-sm tracking-wide text-cream">
+              <p className="display text-sm tracking-wide text-ink">
                 Lots of big windows or glass doors?
               </p>
               <div className="mt-3 grid grid-cols-3 gap-3">
@@ -245,14 +245,14 @@ export function QuoteWizard() {
             <button
               type="button"
               onClick={() => setAdvanced((v) => !v)}
-              className="text-sm text-gold/80 underline-offset-4 hover:underline"
+              className="text-sm text-gold-deep underline-offset-4 hover:underline"
             >
               {advanced ? "Hide" : "I'd rather estimate windows myself"}
             </button>
 
             {advanced && (
-              <div className="rounded-lg border border-smoke bg-charcoal p-4">
-                <label className="display text-sm tracking-wide text-cream">
+              <div className="rounded-lg border border-line bg-surface-2 p-4">
+                <label className="display text-sm tracking-wide text-ink">
                   Approx. number of windows
                 </label>
                 <input
@@ -266,9 +266,9 @@ export function QuoteWizard() {
                     )
                   }
                   placeholder="e.g. 15 (leave blank if not sure)"
-                  className="mt-2 w-full rounded-md border border-smoke bg-noir px-4 py-3 text-cream placeholder:text-cream/40 focus:border-gold"
+                  className="mt-2 w-full rounded-md border border-line bg-surface px-4 py-3 text-ink placeholder:text-ink/40 focus:border-gold"
                 />
-                <p className="mt-2 text-xs text-cream/50">
+                <p className="mt-2 text-xs text-ink/50">
                   Windows, not panes. A guess is totally fine.
                 </p>
               </div>
@@ -298,8 +298,8 @@ export function QuoteWizard() {
             </div>
 
             <div>
-              <p className="display text-sm tracking-wide text-cream">
-                Want the works? <span className="text-cream/50">(optional)</span>
+              <p className="display text-sm tracking-wide text-ink">
+                Want the works? <span className="text-ink/50">(optional)</span>
               </p>
               <div className="mt-3 space-y-3">
                 <CheckCard
@@ -363,18 +363,18 @@ export function QuoteWizard() {
               />
 
               <div>
-                <label className="display text-sm tracking-wide text-cream">
+                <label className="display text-sm tracking-wide text-ink">
                   Upload photos{" "}
-                  <span className="text-cream/50">(recommended)</span>
+                  <span className="text-ink/50">(recommended)</span>
                 </label>
-                <label className="mt-2 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-smoke bg-charcoal px-4 py-6 text-center hover:border-gold/50">
+                <label className="mt-2 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-line bg-surface-2 px-4 py-6 text-center hover:border-gold/50">
                   <span className="text-2xl">📸</span>
-                  <span className="text-sm text-cream/70">
+                  <span className="text-sm text-ink/70">
                     {photoNames.length > 0
                       ? `${photoNames.length} photo(s) added`
                       : "Tap to add photos of your windows"}
                   </span>
-                  <span className="text-xs text-cream/45">
+                  <span className="text-xs text-ink/45">
                     Helps us lock in your exact price
                   </span>
                   <input
@@ -391,7 +391,7 @@ export function QuoteWizard() {
                 </label>
               </div>
 
-              <p className="rounded-md border border-gold/20 bg-gold/5 px-4 py-3 text-sm text-cream/80">
+              <p className="rounded-md border border-gold/20 bg-gold/10 px-4 py-3 text-sm text-ink/80">
                 We&apos;ll review and confirm your final price within 24 hours.
               </p>
             </div>
@@ -403,7 +403,7 @@ export function QuoteWizard() {
           {step > 1 ? (
             <button
               onClick={back}
-              className="display text-sm tracking-wide text-cream/60 hover:text-gold"
+              className="display text-sm tracking-wide text-ink/60 hover:text-gold-deep"
             >
               ← Back
             </button>
@@ -418,8 +418,8 @@ export function QuoteWizard() {
               className={clsx(
                 "display rounded-sm px-7 py-3 text-sm font-semibold uppercase tracking-wide transition-all",
                 canContinue()
-                  ? "gold-grad text-ink hover:brightness-110"
-                  : "cursor-not-allowed bg-charcoal text-cream/40",
+                  ? "bg-gold text-ink hover:bg-gold-soft"
+                  : "cursor-not-allowed bg-surface-2 text-ink/40",
               )}
             >
               Continue →
@@ -433,8 +433,8 @@ export function QuoteWizard() {
               className={clsx(
                 "display rounded-sm px-7 py-3 text-sm font-semibold uppercase tracking-wide transition-all",
                 canContinue() && !submitting
-                  ? "gold-grad text-ink hover:brightness-110"
-                  : "cursor-not-allowed bg-charcoal text-cream/40",
+                  ? "bg-gold text-ink hover:bg-gold-soft"
+                  : "cursor-not-allowed bg-surface-2 text-ink/40",
               )}
             >
               {submitting ? "Crunching numbers…" : "Get My Price 💰"}
@@ -443,7 +443,7 @@ export function QuoteWizard() {
         </div>
       </div>
 
-      <p className="mt-4 text-center text-xs text-cream/40">
+      <p className="mt-4 text-center text-xs text-ink/50">
         🔒 No obligation. Free quote. Local Victoria-based crew.
       </p>
     </div>
@@ -461,13 +461,13 @@ function StepHeader({
 }) {
   return (
     <div>
-      <span className="display text-xs tracking-[0.2em] text-gold">
+      <span className="display text-xs tracking-[0.2em] text-gold-deep">
         {kicker}
       </span>
-      <h2 className="display mt-1 text-2xl font-bold text-cream sm:text-3xl">
+      <h2 className="display mt-1 text-2xl font-bold text-ink sm:text-3xl">
         {title}
       </h2>
-      {sub && <p className="mt-2 text-sm text-cream/60">{sub}</p>}
+      {sub && <p className="mt-2 text-sm text-ink/60">{sub}</p>}
     </div>
   );
 }
@@ -489,16 +489,16 @@ function Field({
 }) {
   return (
     <div>
-      <label className="display text-sm tracking-wide text-cream">
+      <label className="display text-sm tracking-wide text-ink">
         {label}
-        {required && <span className="text-gold"> *</span>}
+        {required && <span className="text-gold-deep"> *</span>}
       </label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="mt-2 w-full rounded-md border border-smoke bg-charcoal px-4 py-3 text-cream placeholder:text-cream/40 focus:border-gold"
+        className="mt-2 w-full rounded-md border border-line bg-surface px-4 py-3 text-ink placeholder:text-ink/40 focus:border-gold"
       />
     </div>
   );
@@ -506,13 +506,13 @@ function Field({
 
 function PricePreview({ low, high }: { low: number; high: number }) {
   return (
-    <div className="rounded-lg border border-gold/30 bg-gold/5 px-5 py-4 text-center">
-      <p className="display text-xs tracking-[0.2em] text-gold">
+    <div className="rounded-lg border border-gold/30 bg-gold/10 px-5 py-4 text-center">
+      <p className="display text-xs tracking-[0.2em] text-gold-deep">
         Running estimate
       </p>
-      <p className="display mt-1 text-2xl font-bold text-cream">
+      <p className="display mt-1 text-2xl font-bold text-ink">
         ${low} – ${high}{" "}
-        <span className="text-sm font-normal text-cream/50">CAD</span>
+        <span className="text-sm font-normal text-ink/50">CAD</span>
       </p>
     </div>
   );

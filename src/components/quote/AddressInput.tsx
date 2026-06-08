@@ -72,7 +72,7 @@ export function AddressInput({
   return (
     <div>
       <div className="relative">
-        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gold">
+        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gold-deep">
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
             <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
           </svg>
@@ -84,10 +84,10 @@ export function AddressInput({
           onChange={(e) => onChange(e.target.value)}
           placeholder="Start typing your home address…"
           autoComplete="off"
-          className="w-full rounded-md border border-smoke bg-charcoal py-4 pl-12 pr-4 text-lg text-cream placeholder:text-cream/40 focus:border-gold"
+          className="w-full rounded-md border border-line bg-surface py-4 pl-12 pr-4 text-lg text-ink placeholder:text-ink/40 focus:border-gold"
         />
       </div>
-      <p className="mt-2 text-xs text-cream/50">
+      <p className="mt-2 text-xs text-ink/55">
         {KEY && ready
           ? "Pick your address from the suggestions for the fastest quote."
           : "Enter your street address — we service Victoria & Greater Victoria."}

@@ -12,14 +12,13 @@ export const metadata: Metadata = {
 export default function QuotePage() {
   return (
     <section className="relative py-16 sm:py-24">
-      <div className="pointer-events-none absolute inset-0 pinstripe opacity-40" />
       <Container className="relative">
         <div className="mb-12 text-center">
           <Eyebrow>No obligation · Under 60 seconds</Eyebrow>
-          <h1 className="display mt-3 text-4xl font-bold text-cream sm:text-5xl">
+          <h1 className="display mt-3 text-4xl font-bold text-ink sm:text-5xl">
             Get your instant quote
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-cream/70">
+          <p className="mx-auto mt-4 max-w-xl text-ink/70">
             No window-counting, no jargon. Just answer a few quick questions and
             we&apos;ll show you a real price range right away.
           </p>

@@ -23,10 +23,8 @@ export function Header() {
   return (
     <header
       className={clsx(
-        "sticky top-0 z-50 transition-all duration-300 border-b",
-        scrolled
-          ? "bg-ink/95 backdrop-blur border-smoke shadow-luxe"
-          : "bg-ink/40 backdrop-blur-sm border-transparent",
+        "sticky top-0 z-50 border-b border-smoke bg-ink transition-shadow duration-300",
+        scrolled ? "shadow-luxe" : "",
       )}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-3 sm:px-8">

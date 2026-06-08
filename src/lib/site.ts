@@ -4,9 +4,9 @@
 export const site = {
   name: "Wise Guys Windows",
   shortName: "Wise Guys",
-  tagline: "Dirty Windows? Fuhgeddaboudit.",
+  tagline: "Dirty Windows? Forget about it.",
   description:
-    "Wise Guys Windows is Victoria BC's family-run residential window cleaning crew. Streak-free shine, honest pricing, and an instant online quote in under 60 seconds.",
+    "Wise Guys Windows is Victoria BC's residential window cleaning crew. Streak-free shine, honest pricing, and an instant online quote in under 60 seconds.",
   url: "https://wiseguyswindows.ca",
   phone: "416-579-3253",
   phoneHref: "tel:+14165793253",

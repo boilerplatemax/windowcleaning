@@ -1,24 +1,28 @@
-# Wise Guys Windows 🕴️🪟
+# Wise Guys Windows
 
 A sleek, SEO-optimized Next.js website for **Wise Guys Windows** — a residential
 window cleaning business in Greater Victoria, BC with a fun, playful mob/mafia
-theme ("Dirty windows? Fuhgeddaboudit.").
+theme ("Dirty windows? Forget about it.").
 
-Built with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS v4**,
-**Supabase** (lead capture / CRM) and **SendGrid** (email notifications).
+Built with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS v4** and
+**SendGrid** (email notifications). A light, airy theme with gold accents and a
+dark navbar/footer for contrast.
 
 ## Features
 
-- 🎩 **Playful mafia theme** — noir + gold "speakeasy" design, fully responsive.
-- ⚡ **Instant quote wizard** — a 5-step, idiot-proof flow that produces a price
+- **Playful mafia theme** — light "speakeasy" design with gold accents, fully
+  responsive.
+- **Instant quote wizard** — a 5-step, idiot-proof flow that produces a price
   range + recommended midpoint in under 60 seconds. No window/pane jargon.
-- 💰 **Rule-based pricing engine** (`src/lib/pricing.ts`) tuned for Victoria, BC
+- **Rule-based pricing engine** (`src/lib/pricing.ts`) tuned for Victoria, BC
   in CAD, with server-side recalculation so client math is never trusted.
-- 🗂️ **Supabase CRM capture** — every quote is saved for follow-up.
-- ✉️ **SendGrid notifications** — you get an email for every new lead.
-- 📍 **Google Places autocomplete** for addresses (optional; graceful fallback).
-- 🔍 **SEO-first** — per-page metadata, OpenGraph, JSON-LD `LocalBusiness`,
+- **SendGrid notifications** — you get an email for every new lead.
+- **Google Places autocomplete** for addresses (optional; graceful fallback).
+- **SEO-first** — per-page metadata, OpenGraph, JSON-LD `LocalBusiness`,
   `sitemap.xml`, and `robots.txt`.
+
+> CRM lead persistence (e.g. Supabase) was removed for now. The `/api/quote`
+> route has a clearly marked spot to wire a database back in later.
 
 ## Pages
 
@@ -37,23 +41,12 @@ Open http://localhost:3000.
 ## Environment variables
 
 See `.env.example`. All are optional for local development — the quote flow
-still computes and shows prices without them; it just won't persist leads or
-send email.
+still computes and shows prices without them; it just won't send email.
 
 | Variable | Purpose |
 | --- | --- |
-| `NEXT_PUBLIC_SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` | Save leads to Supabase |
 | `SENDGRID_API_KEY` / `SENDGRID_FROM_EMAIL` / `QUOTE_NOTIFICATION_EMAIL` | Email notifications |
 | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Address autocomplete |
-
-## Supabase setup
-
-1. Create a Supabase project.
-2. Run `supabase/schema.sql` in the SQL editor to create the `quotes` table.
-3. Copy the project URL + service-role key into `.env.local`.
-
-Leads are inserted from the server (`/api/quote`) using the service-role key,
-so Row Level Security stays fully locked down.
 
 ## Pricing model
 
@@ -70,5 +63,5 @@ Configured in `src/lib/pricing.ts`:
 
 - Images are royalty-free Unsplash placeholders — swap for real photos later.
 - Photo upload on the quote form currently flags "photos provided" (boosts the
-  confidence indicator) and records a count. To store the actual files, add a
-  Supabase Storage bucket and upload in `/api/quote`.
+  confidence indicator) and records a count. To store the actual files, wire up
+  storage in `/api/quote`.
