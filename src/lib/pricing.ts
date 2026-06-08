@@ -1,8 +1,8 @@
 import type { QuoteInput, QuoteResult, QuoteBreakdownLine } from "./types";
 
 // ------------------------------------------------------------------ //
-//  Wise Guys Windows — rule-based pricing engine (Victoria, BC / CAD) //
-//  Tuned to be slightly competitive to win early customers.          //
+//  Orca Window Cleaning — rule-based pricing engine (Victoria, BC)    //
+//  Tuned to be slightly competitive to win early customers (CAD).     //
 // ------------------------------------------------------------------ //
 
 const BASE: Record<QuoteInput["homeSize"], { low: number; high: number }> = {

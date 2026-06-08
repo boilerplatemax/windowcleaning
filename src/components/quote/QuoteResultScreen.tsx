@@ -13,33 +13,29 @@ export function QuoteResultScreen({
   contact: QuoteContact;
   input: QuoteInput;
 }) {
-  const firstName = contact.name.trim().split(" ")[0] || "boss";
+  const firstName = contact.name.trim().split(" ")[0] || "there";
 
   return (
     <div className="mx-auto w-full max-w-2xl animate-fade-up">
-      <div className="overflow-hidden rounded-2xl border border-gold/40 bg-surface shadow-luxe">
+      <div className="overflow-hidden rounded-3xl border border-ocean/30 bg-surface shadow-luxe">
         {/* Header band */}
-        <div className="gold-grad px-6 py-6 text-center text-ink sm:px-9">
-          <p className="display text-xs tracking-[0.25em]">
-            An offer you can&apos;t refuse
-          </p>
+        <div className="ocean-grad px-6 py-6 text-center text-white sm:px-9">
+          <p className="eyebrow text-xs text-white/90">Your estimate is ready</p>
           <h2 className="display mt-1 text-2xl font-bold sm:text-3xl">
-            Here&apos;s your price, {firstName} 🤝
+            Here&apos;s your price, {firstName} 👋
           </h2>
         </div>
 
         <div className="p-6 sm:p-9">
           {/* Price */}
           <div className="text-center">
-            <p className="display text-sm tracking-[0.2em] text-gold-deep">
-              Estimated Range
-            </p>
+            <p className="eyebrow text-xs text-ocean-deep">Estimated Range</p>
             <p className="display mt-2 text-4xl font-bold text-ink sm:text-5xl">
               {formatCAD(result.low)} – {formatCAD(result.high)}
             </p>
             <p className="mt-3 text-ink/70">
               Recommended:{" "}
-              <span className="display text-xl text-gold-deep">
+              <span className="display text-xl text-ocean-deep">
                 ~{formatCAD(result.midpoint)} {result.currency}
               </span>
             </p>
@@ -47,8 +43,8 @@ export function QuoteResultScreen({
             <span
               className={`mt-4 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs ${
                 result.confidence === "high"
-                  ? "border-green-600/40 bg-green-600/10 text-green-700"
-                  : "border-gold/40 bg-gold/10 text-gold-deep"
+                  ? "border-emerald-600/40 bg-emerald-600/10 text-emerald-700"
+                  : "border-ocean/40 bg-ocean/10 text-ocean-deep"
               }`}
             >
               {result.confidence === "high"
@@ -58,10 +54,8 @@ export function QuoteResultScreen({
           </div>
 
           {/* Breakdown */}
-          <div className="mt-8 rounded-lg border border-line bg-surface-2 p-5">
-            <p className="display text-xs tracking-[0.2em] text-gold-deep">
-              The breakdown
-            </p>
+          <div className="mt-8 rounded-2xl border border-line bg-surface-2 p-5">
+            <p className="eyebrow text-xs text-ocean-deep">The breakdown</p>
             <ul className="mt-3 divide-y divide-line">
               {result.breakdown.map((line, i) => (
                 <li
@@ -76,12 +70,12 @@ export function QuoteResultScreen({
           </div>
 
           {/* Testimonial */}
-          <div className="mt-6 rounded-lg border border-line bg-surface-2 p-5 text-center">
+          <div className="mt-6 rounded-2xl border border-line bg-surface-2 p-5 text-center">
             <p className="text-sm italic text-ink/80">
-              &ldquo;Booked in two minutes, windows looked unbelievable. These
-              guys are the real deal.&rdquo;
+              &ldquo;Booked in two minutes, windows looked unbelievable.
+              Professional and spotless.&rdquo;
             </p>
-            <p className="display mt-2 text-xs tracking-widest text-gold-deep">
+            <p className="display mt-2 text-xs font-semibold text-ocean-deep">
               — Marie T., Oak Bay
             </p>
           </div>
@@ -96,7 +90,7 @@ export function QuoteResultScreen({
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <a
               href={site.phoneHref}
-              className="display flex items-center justify-center rounded-sm bg-gold px-6 py-3.5 text-sm font-semibold uppercase tracking-wide text-ink hover:bg-gold-soft"
+              className="display flex items-center justify-center rounded-full ocean-grad px-6 py-3.5 text-sm font-semibold text-white hover:brightness-105"
             >
               📞 Book This Price
             </a>
@@ -104,14 +98,14 @@ export function QuoteResultScreen({
               href={`${site.emailHref}?subject=Quote%20confirmation%20for%20${encodeURIComponent(
                 input.address,
               )}`}
-              className="display flex items-center justify-center rounded-sm border border-gold/70 px-6 py-3.5 text-sm uppercase tracking-wide text-gold-deep hover:bg-gold hover:text-ink"
+              className="display flex items-center justify-center rounded-full border border-ocean/50 px-6 py-3.5 text-sm font-semibold text-ocean-deep hover:bg-ocean hover:text-white"
             >
               Request Confirmation
             </a>
           </div>
           <a
             href={site.phoneHref}
-            className="mt-3 block text-center text-sm text-ink/60 hover:text-gold-deep"
+            className="mt-3 block text-center text-sm text-ink/60 hover:text-ocean-deep"
           >
             Or just talk to us — {site.phone}
           </a>
@@ -119,7 +113,7 @@ export function QuoteResultScreen({
       </div>
 
       <p className="mt-5 text-center text-xs text-ink/45">
-        Got your details, {firstName}. We&apos;ll be in touch shortly. 🕴️
+        Got your details, {firstName}. We&apos;ll be in touch shortly. 🌊
       </p>
     </div>
   );

@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: `Get in touch with Wise Guys Windows. Call ${site.phone} or request a free window cleaning quote in Greater Victoria, BC.`,
+  description: `Get in touch with Orca Window Cleaning. Call ${site.phone} or request a free window cleaning quote in Greater Victoria, BC.`,
   alternates: { canonical: "/contact" },
 };
 
@@ -19,8 +19,8 @@ export default function ContactPage() {
             Get in touch
           </h1>
           <p className="mt-4 max-w-md text-ink/70">
-            Questions, bookings, or just want to say hello? The Wise Guys are
-            happy to help. The fastest way to a price is our instant quote tool.
+            Questions, bookings, or just want to say hello? We&apos;re happy to
+            help. The fastest way to a price is our instant quote tool.
           </p>
 
           <div className="mt-10 space-y-6">
@@ -51,7 +51,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-line bg-surface p-8 shadow-luxe">
+        <div className="rounded-3xl border border-line bg-surface p-8 shadow-luxe">
           <h2 className="display text-2xl font-bold text-ink">
             Prefer to get a price now?
           </h2>
@@ -67,7 +67,7 @@ export default function ContactPage() {
               "Honest, upfront pricing",
             ].map((p) => (
               <li key={p} className="flex items-center gap-3 text-ink/80">
-                <Icon name="check" className="h-4 w-4 text-gold-deep" /> {p}
+                <Icon name="check" className="h-4 w-4 text-ocean-deep" /> {p}
               </li>
             ))}
           </ul>
@@ -78,7 +78,7 @@ export default function ContactPage() {
           </div>
           <p className="mt-4 text-center text-sm text-ink/55">
             Or call us directly at{" "}
-            <a href={site.phoneHref} className="text-gold-deep hover:underline">
+            <a href={site.phoneHref} className="text-ocean-deep hover:underline">
               {site.phone}
             </a>
           </p>
@@ -101,13 +101,11 @@ function ContactRow({
 }) {
   const content = (
     <div className="flex items-start gap-4">
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold-deep">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ocean/10 text-ocean-deep">
         <Icon name={icon} className="h-5 w-5" />
       </span>
       <div>
-        <p className="display text-xs tracking-[0.2em] text-gold-deep">
-          {label}
-        </p>
+        <p className="eyebrow text-xs text-ocean-deep">{label}</p>
         <p className="mt-0.5 text-ink">{value}</p>
       </div>
     </div>

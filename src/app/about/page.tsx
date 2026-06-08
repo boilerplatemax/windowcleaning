@@ -5,13 +5,13 @@ import { Icon, type IconName } from "@/components/Icon";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About the Family",
+  title: "About Us",
   description:
-    "Wise Guys Windows is a local window cleaning crew serving Greater Victoria, BC. Honest pricing, spotless results, and a bit of fun.",
+    "Orca Window Cleaning is a local, professional window cleaning crew serving Greater Victoria, BC. Honest pricing, spotless results, and friendly service.",
   alternates: { canonical: "/about" },
 };
 
-const code: { icon: IconName; title: string; body: string }[] = [
+const values: { icon: IconName; title: string; body: string }[] = [
   {
     icon: "badgeCheck",
     title: "Honesty first",
@@ -23,9 +23,9 @@ const code: { icon: IconName; title: string; body: string }[] = [
     body: "On-time, tidy, and efficient. We show up when we say we will.",
   },
   {
-    icon: "gem",
+    icon: "droplet",
     title: "Spotless every time",
-    body: "If it's not streak-free, it's not done. That's the Wise Guys guarantee.",
+    body: "If it's not streak-free, it's not done. That's the Orca guarantee.",
   },
 ];
 
@@ -34,24 +34,26 @@ export default function AboutPage() {
     <>
       <section className="border-b border-line bg-surface-2 py-16 sm:py-24">
         <Container className="text-center">
-          <Eyebrow>Meet the family</Eyebrow>
+          <Eyebrow>About Orca</Eyebrow>
           <h1 className="display mt-3 text-4xl font-bold text-ink sm:text-6xl">
-            We&apos;re in the clean business
+            A clearer view of clean
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-ink/70">
-            ...the window clean business, that is. Around here, your windows are
-            family — and we treat &apos;em that way.
+            We&apos;re a local crew on a simple mission: make window cleaning
+            easy, honest, and genuinely great — so you can enjoy the coast in
+            full clarity.
           </p>
         </Container>
       </section>
 
       <section className="py-20 sm:py-28">
         <Container className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="relative h-80 overflow-hidden rounded-2xl border border-line shadow-luxe">
+          <div className="relative h-96 overflow-hidden rounded-3xl border border-line shadow-luxe">
             <Image
-              src="https://images.unsplash.com/photo-1581578017093-cd30fce4eeb7?w=1000&q=80"
-              alt="Professional window cleaner at work"
+              src="https://images.unsplash.com/photo-1581578017093-cd30fce4eeb7?w=1200&q=80"
+              alt="Professional window cleaner at work on a bright home"
               fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
             />
           </div>
@@ -61,22 +63,22 @@ export default function AboutPage() {
               eyebrow="Our story"
               title="Honest work, spotless glass"
             />
-            <div className="mt-5 space-y-4 text-ink/75 leading-relaxed">
+            <div className="mt-5 space-y-4 leading-relaxed text-ink/75">
               <p>
-                Wise Guys Windows started with a simple idea: window cleaning
-                should be easy, honest, and maybe even a little fun. No mystery
-                pricing, no pushy sales — just a reliable crew that makes your
-                glass gleam.
+                Orca Window Cleaning started with a simple idea: window cleaning
+                should be easy, honest, and done to a genuinely high standard. No
+                mystery pricing, no pushy sales — just a reliable crew that makes
+                your glass disappear.
               </p>
               <p>
-                We&apos;re proud to be local to {site.serviceArea}. When you
-                book the Wise Guys, you&apos;re not dealing with some faceless
-                franchise — you&apos;re dealing with neighbours who take pride in
-                every pane.
+                We&apos;re proud to be local to {site.serviceArea}. When you book
+                Orca, you&apos;re not dealing with a faceless franchise —
+                you&apos;re dealing with neighbours who take pride in every pane
+                and treat your home like their own.
               </p>
               <p>
-                So sit back, relax, and let us do the dirty work. You&apos;re the
-                boss — you deserve clean windows.
+                So sit back, relax, and let us bring back the view. Clear
+                windows, brighter rooms, and a coast worth looking at.
               </p>
             </div>
           </div>
@@ -85,14 +87,14 @@ export default function AboutPage() {
 
       <section className="border-y border-line bg-surface-2 py-20 sm:py-28">
         <Container>
-          <SectionHeading eyebrow="The code" title="What we stand for" />
+          <SectionHeading eyebrow="What we stand for" title="Our promise" />
           <div className="mt-14 grid gap-6 sm:grid-cols-3">
-            {code.map((v) => (
+            {values.map((v) => (
               <div
                 key={v.title}
-                className="rounded-xl border border-line bg-surface p-6 shadow-luxe"
+                className="rounded-2xl border border-line bg-surface p-6 shadow-card"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-gold/10 text-gold-deep">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-ocean/10 text-ocean-deep">
                   <Icon name={v.icon} className="h-6 w-6" />
                 </span>
                 <h3 className="display mt-4 text-lg font-semibold text-ink">
@@ -107,10 +109,10 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-ink pinstripe">
+      <section className="deep-sea">
         <Container className="py-16 text-center sm:py-20">
-          <h2 className="display text-3xl font-bold text-cream sm:text-4xl">
-            Let&apos;s make your windows an offer they can&apos;t refuse
+          <h2 className="display text-3xl font-bold text-white sm:text-4xl">
+            Ready for windows you can see right through?
           </h2>
           <div className="mt-8">
             <Button href="/quote" size="lg">

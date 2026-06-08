@@ -23,12 +23,16 @@ export function Header() {
   return (
     <header
       className={clsx(
-        "sticky top-0 z-50 border-b border-smoke bg-ink transition-shadow duration-300",
-        scrolled ? "shadow-luxe" : "",
+        "sticky top-0 z-50 border-b transition-all duration-300",
+        scrolled
+          ? "glass border-line shadow-card"
+          : "border-transparent bg-paper/70",
       )}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-3 sm:px-8">
-        <Logo />
+        <div className="text-ink">
+          <Logo light />
+        </div>
 
         <nav className="hidden items-center gap-8 lg:flex">
           {nav.map((item) => (
@@ -36,10 +40,10 @@ export function Header() {
               key={item.href}
               href={item.href}
               className={clsx(
-                "display text-sm tracking-wide transition-colors",
+                "display text-sm font-medium transition-colors",
                 pathname === item.href
-                  ? "text-gold"
-                  : "text-cream/80 hover:text-gold",
+                  ? "text-ocean-deep"
+                  : "text-ink/70 hover:text-ocean-deep",
               )}
             >
               {item.label}
@@ -47,10 +51,10 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex">
           <a
             href={site.phoneHref}
-            className="display text-sm text-cream/80 hover:text-gold"
+            className="display text-sm font-medium text-ink/70 hover:text-ocean-deep"
           >
             {site.phone}
           </a>
@@ -62,26 +66,26 @@ export function Header() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-sm border border-smoke text-cream lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg border border-line text-ink lg:hidden"
           aria-label="Toggle menu"
           aria-expanded={open}
         >
           <div className="space-y-1.5">
             <span
               className={clsx(
-                "block h-0.5 w-6 bg-gold transition-transform",
+                "block h-0.5 w-6 bg-ocean transition-transform",
                 open && "translate-y-2 rotate-45",
               )}
             />
             <span
               className={clsx(
-                "block h-0.5 w-6 bg-gold transition-opacity",
+                "block h-0.5 w-6 bg-ocean transition-opacity",
                 open && "opacity-0",
               )}
             />
             <span
               className={clsx(
-                "block h-0.5 w-6 bg-gold transition-transform",
+                "block h-0.5 w-6 bg-ocean transition-transform",
                 open && "-translate-y-2 -rotate-45",
               )}
             />
@@ -92,7 +96,7 @@ export function Header() {
       {/* Mobile menu */}
       <div
         className={clsx(
-          "overflow-hidden border-t border-smoke bg-noir transition-[max-height] duration-300 lg:hidden",
+          "overflow-hidden border-t border-line bg-surface transition-[max-height] duration-300 lg:hidden",
           open ? "max-h-96" : "max-h-0",
         )}
       >
@@ -103,19 +107,19 @@ export function Header() {
               href={item.href}
               onClick={() => setOpen(false)}
               className={clsx(
-                "display rounded-sm px-3 py-3 text-base tracking-wide",
+                "display rounded-lg px-3 py-3 text-base font-medium",
                 pathname === item.href
-                  ? "bg-charcoal text-gold"
-                  : "text-cream/85 hover:bg-charcoal",
+                  ? "bg-surface-2 text-ocean-deep"
+                  : "text-ink/80 hover:bg-surface-2",
               )}
             >
               {item.label}
             </Link>
           ))}
-          <div className="mt-2 flex flex-col gap-3 border-t border-smoke pt-4">
+          <div className="mt-2 flex flex-col gap-3 border-t border-line pt-4">
             <a
               href={site.phoneHref}
-              className="display text-center text-cream/80"
+              className="display text-center font-medium text-ink/70"
             >
               Call {site.phone}
             </a>

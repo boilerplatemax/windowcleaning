@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 declare global {
   interface Window {
     google?: typeof google;
-    __wgwMapsLoading?: Promise<void>;
+    __orcaMapsLoading?: Promise<void>;
   }
 }
 
@@ -21,9 +21,9 @@ const KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 function loadMaps(): Promise<void> {
   if (typeof window === "undefined") return Promise.resolve();
   if (window.google?.maps?.places) return Promise.resolve();
-  if (window.__wgwMapsLoading) return window.__wgwMapsLoading;
+  if (window.__orcaMapsLoading) return window.__orcaMapsLoading;
 
-  window.__wgwMapsLoading = new Promise<void>((resolve, reject) => {
+  window.__orcaMapsLoading = new Promise<void>((resolve, reject) => {
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${KEY}&libraries=places`;
     script.async = true;
@@ -32,7 +32,7 @@ function loadMaps(): Promise<void> {
     script.onerror = () => reject(new Error("Failed to load Google Maps"));
     document.head.appendChild(script);
   });
-  return window.__wgwMapsLoading;
+  return window.__orcaMapsLoading;
 }
 
 export function AddressInput({
@@ -72,7 +72,7 @@ export function AddressInput({
   return (
     <div>
       <div className="relative">
-        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gold-deep">
+        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-ocean-deep">
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
             <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
           </svg>
@@ -84,7 +84,7 @@ export function AddressInput({
           onChange={(e) => onChange(e.target.value)}
           placeholder="Start typing your home address…"
           autoComplete="off"
-          className="w-full rounded-md border border-line bg-surface py-4 pl-12 pr-4 text-lg text-ink placeholder:text-ink/40 focus:border-gold"
+          className="w-full rounded-lg border border-line bg-surface py-4 pl-12 pr-4 text-lg text-ink placeholder:text-ink/40 focus:border-ocean"
         />
       </div>
       <p className="mt-2 text-xs text-ink/55">
