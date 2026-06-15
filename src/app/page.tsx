@@ -51,8 +51,13 @@ function Hero() {
           </span>
           <h1 className="display mt-4 text-5xl font-bold leading-[1.1] text-white sm:text-6xl lg:text-7xl">
             Spotless windows.
-            {/* pb-1 keeps the gradient clip from cutting off the descenders. */}
-            <span className="block pb-1 text-ocean-grad">Stunning views.</span>
+            {/* The gradient text-clip only paints inside the padding box, so the
+                descender on the "g" needs room below the baseline or it gets
+                clipped. pb scales with the font size; relative z-10 keeps the
+                headline on top of anything that follows. */}
+            <span className="relative z-10 block pb-[0.25em] text-ocean-grad">
+              Stunning views.
+            </span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/85">
             Professional residential window cleaning across Greater Victoria.
