@@ -1,6 +1,6 @@
-# Orca Window Cleaning
+# Stingray Cleaning
 
-A sleek, modern, SEO-optimized Next.js website for **Orca Window Cleaning** — a
+A sleek, modern, SEO-optimized Next.js website for **Stingray Cleaning** — a
 residential window cleaning business in Greater Victoria, BC with a clean,
 coastal brand ("Spotless windows. Stunning views.").
 
@@ -59,9 +59,21 @@ Configured in `src/lib/pricing.ts`:
 - **Add-ons:** Screens +$35 · Tracks/frames +$25 · Skylights +$45
 - Output rounded to the nearest $5 with a clean midpoint.
 
+## Photos & branding
+
+Real photos and logos live in **`public/photos`**. Drop a correctly-named file
+in there and it automatically replaces the matching Unsplash placeholder — no
+code changes needed. Any image extension works (`.jpg`, `.png`, `.webp`, …);
+the base name is what matters. See **`public/photos/README.md`** for the full
+list of filenames (e.g. `home-hero`, `home-see-the-difference`,
+`service-exterior`, `gallery-1`, `before-after-1`, `logo-landscape`).
+
+The resolver lives in `src/lib/photos.ts`.
+
 ## Notes
 
-- Images are royalty-free Unsplash placeholders — swap for real photos later.
+- Until you add real photos, the site falls back to royalty-free Unsplash
+  placeholders so it always renders.
 - Photo upload on the quote form currently flags "photos provided" (boosts the
   confidence indicator) and records a count. To store the actual files, wire up
   storage in `/api/quote`.

@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/*  Orca Window Cleaning — Theme                                       */
-/*  Sleek, modern coastal: airy light surfaces, crisp white cards,     */
-/*  deep-ocean navy for grounding bands and ocean-blue accents.        */
+/*  Stingray Cleaning — Theme                                          */
+/*  Modern coastal: crisp white cards, deep-ocean navy grounding       */
+/*  bands and a bold ocean-blue accent. Tuned for strong contrast.     */
 /* ------------------------------------------------------------------ */
 
 @theme {
@@ -14,10 +14,10 @@
   --color-smoke: #1e4a5e;
 
   /* Light surfaces — the bulk of the site lives here. */
-  --color-paper: #f5fafc;
+  --color-paper: #eef6f9;
   --color-surface: #ffffff;
-  --color-surface-2: #e9f3f7;
-  --color-line: #d6e6ed;
+  --color-surface-2: #e2eff4;
+  --color-line: #c3dae3;
 
   /* Light text for use on dark/ocean surfaces. */
   --color-cream: #eef7fb;

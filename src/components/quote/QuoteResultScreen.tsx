@@ -19,7 +19,7 @@ export function QuoteResultScreen({
     <div className="mx-auto w-full max-w-2xl animate-fade-up">
       <div className="overflow-hidden rounded-3xl border border-ocean/30 bg-surface shadow-luxe">
         {/* Header band */}
-        <div className="ocean-grad px-6 py-6 text-center text-white sm:px-9">
+        <div className="bg-ocean-deep px-6 py-6 text-center text-white sm:px-9">
           <p className="eyebrow text-xs text-white/90">Your estimate is ready</p>
           <h2 className="display mt-1 text-2xl font-bold sm:text-3xl">
             Here&apos;s your price, {firstName} 👋
@@ -90,7 +90,7 @@ export function QuoteResultScreen({
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <a
               href={site.phoneHref}
-              className="display flex items-center justify-center rounded-full ocean-grad px-6 py-3.5 text-sm font-semibold text-white hover:brightness-105"
+              className="display flex items-center justify-center rounded-full bg-ocean-deep px-6 py-3.5 text-sm font-semibold text-white hover:bg-ocean"
             >
               📞 Book This Price
             </a>

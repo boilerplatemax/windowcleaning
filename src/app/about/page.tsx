@@ -3,11 +3,12 @@ import Image from "next/image";
 import { Button, Container, SectionHeading, Eyebrow } from "@/components/ui";
 import { Icon, type IconName } from "@/components/Icon";
 import { site } from "@/lib/site";
+import { photo } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Orca Window Cleaning is a local, professional window cleaning crew serving Greater Victoria, BC. Honest pricing, spotless results, and friendly service.",
+    "Stingray Cleaning is a local, professional window cleaning crew serving Greater Victoria, BC. Honest pricing, spotless results, and friendly service.",
   alternates: { canonical: "/about" },
 };
 
@@ -25,7 +26,7 @@ const values: { icon: IconName; title: string; body: string }[] = [
   {
     icon: "droplet",
     title: "Spotless every time",
-    body: "If it's not streak-free, it's not done. That's the Orca guarantee.",
+    body: "If it's not streak-free, it's not done. That's the Stingray guarantee.",
   },
 ];
 
@@ -34,7 +35,7 @@ export default function AboutPage() {
     <>
       <section className="border-b border-line bg-surface-2 py-16 sm:py-24">
         <Container className="text-center">
-          <Eyebrow>About Orca</Eyebrow>
+          <Eyebrow>About Stingray</Eyebrow>
           <h1 className="display mt-3 text-4xl font-bold text-ink sm:text-6xl">
             A clearer view of clean
           </h1>
@@ -50,7 +51,10 @@ export default function AboutPage() {
         <Container className="grid items-center gap-12 lg:grid-cols-2">
           <div className="relative h-96 overflow-hidden rounded-3xl border border-line shadow-luxe">
             <Image
-              src="https://images.unsplash.com/photo-1581578017093-cd30fce4eeb7?w=1200&q=80"
+              src={photo(
+                "about-team",
+                "https://images.unsplash.com/photo-1581578017093-cd30fce4eeb7?w=1200&q=80",
+              )}
               alt="Professional window cleaner at work on a bright home"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
@@ -65,14 +69,14 @@ export default function AboutPage() {
             />
             <div className="mt-5 space-y-4 leading-relaxed text-ink/75">
               <p>
-                Orca Window Cleaning started with a simple idea: window cleaning
+                Stingray Cleaning started with a simple idea: window cleaning
                 should be easy, honest, and done to a genuinely high standard. No
                 mystery pricing, no pushy sales — just a reliable crew that makes
                 your glass disappear.
               </p>
               <p>
                 We&apos;re proud to be local to {site.serviceArea}. When you book
-                Orca, you&apos;re not dealing with a faceless franchise —
+                Stingray, you&apos;re not dealing with a faceless franchise —
                 you&apos;re dealing with neighbours who take pride in every pane
                 and treat your home like their own.
               </p>

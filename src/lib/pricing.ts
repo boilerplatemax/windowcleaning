@@ -1,7 +1,7 @@
 import type { QuoteInput, QuoteResult, QuoteBreakdownLine } from "./types";
 
 // ------------------------------------------------------------------ //
-//  Orca Window Cleaning — rule-based pricing engine (Victoria, BC)    //
+//  Stingray Cleaning — rule-based pricing engine (Victoria, BC)       //
 //  Tuned to be slightly competitive to win early customers (CAD).     //
 // ------------------------------------------------------------------ //
 

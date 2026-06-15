@@ -3,48 +3,67 @@ import Image from "next/image";
 import { Button, Container, SectionHeading, Eyebrow } from "@/components/ui";
 import { Icon } from "@/components/Icon";
 import { site } from "@/lib/site";
+import { photo } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: "Window Cleaning Services",
   description:
-    "Exterior & interior window cleaning, screens, tracks, frames and skylights for homes across Greater Victoria, BC. Honest pricing from the Orca crew.",
+    "Exterior & interior window cleaning, screens, tracks, frames and skylights for homes across Greater Victoria, BC. Honest pricing from the Stingray crew.",
   alternates: { canonical: "/services" },
 };
 
 const services = [
   {
     title: "Exterior Window Cleaning",
-    img: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=1200&q=80",
+    img: photo(
+      "service-exterior",
+      "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=1200&q=80",
+    ),
     body: "Pure, streak-free shine on every outside pane using professional-grade gear and purified water. Rain or shine, your glass stays gleaming.",
     points: ["Streak-free guarantee", "Ground & upper floors", "Eco-friendly solutions"],
   },
   {
     title: "Interior Window Cleaning",
-    img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
+    img: photo(
+      "service-interior",
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
+    ),
     body: "Crystal-clear views from the couch. We protect your floors and furniture, then leave every inside pane spotless.",
     points: ["Shoe covers & drop cloths", "Sills wiped down", "No mess left behind"],
   },
   {
     title: "Screen Cleaning",
-    img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+    img: photo(
+      "service-screens",
+      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+    ),
     body: "We pop them out, gently wash off the dust and pollen, and fit them right back. Fresh air never looked so clean.",
     points: ["Hand-washed screens", "Dust & pollen removed", "Re-fitted carefully"],
   },
   {
     title: "Track & Frame Detailing",
-    img: "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=1200&q=80",
+    img: photo(
+      "service-tracks-frames",
+      "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=1200&q=80",
+    ),
     body: "We clear out the corners you forget about — dirt, bugs and grime vacuumed and wiped from every track and frame.",
     points: ["Vacuumed tracks", "Wiped frames", "Like-new finish"],
   },
   {
     title: "Skylight Cleaning",
-    img: "https://images.unsplash.com/photo-1503602642458-232111445657?w=1200&q=80",
+    img: photo(
+      "service-skylights",
+      "https://images.unsplash.com/photo-1503602642458-232111445657?w=1200&q=80",
+    ),
     body: "Those hard-to-reach ones up top? Consider it handled. More natural light, zero ladders for you.",
     points: ["Safe access", "Inside & out", "Brighter rooms"],
   },
   {
     title: "Regular Maintenance Plans",
-    img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&q=80",
+    img: photo(
+      "service-maintenance",
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&q=80",
+    ),
     body: "Keep that just-cleaned clarity year-round with a recurring plan. Set it once and never think about it again.",
     points: ["Monthly / quarterly", "Priority booking", "Loyal-customer pricing"],
   },
@@ -61,7 +80,7 @@ export default function ServicesPage() {
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-ink/70">
             From a quick exterior refresh to the full white-glove treatment, the
-            Orca crew handles every pane so you don&apos;t have to.
+            Stingray crew handles every pane so you don&apos;t have to.
           </p>
         </Container>
       </section>

@@ -17,11 +17,11 @@ const base =
 
 const variants = {
   ocean:
-    "ocean-grad text-white shadow-luxe hover:brightness-105 hover:-translate-y-0.5",
+    "bg-ocean-deep text-white shadow-luxe hover:bg-ocean hover:-translate-y-0.5",
   outline:
-    "border border-ocean/40 text-ocean-deep hover:bg-ocean hover:text-white hover:border-ocean",
+    "border-2 border-ocean-deep text-ocean-deep hover:bg-ocean-deep hover:text-white",
   outlineLight:
-    "border border-white/50 text-white hover:bg-white hover:text-ink hover:border-white",
+    "border-2 border-white text-white hover:bg-white hover:text-ink",
   dark: "bg-ink text-cream border border-ink hover:bg-noir",
 };
 
@@ -43,7 +43,7 @@ export function Button({
   const cls = clsx(base, variants[variant], sizes[size], className);
   if (href) {
     return (
-      <Link href={href} className={cls}>
+      <Link href={href} className={cls} onClick={onClick}>
         {children}
       </Link>
     );
@@ -96,7 +96,7 @@ export function SectionHeading({
         <p
           className={clsx(
             "mt-4 text-base sm:text-lg leading-relaxed",
-            onDark ? "text-cream/70" : "text-ink/65",
+            onDark ? "text-cream/85" : "text-ink/75",
           )}
         >
           {subtitle}

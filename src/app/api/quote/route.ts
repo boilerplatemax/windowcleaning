@@ -21,10 +21,12 @@ export async function POST(req: Request) {
 
   const { input, contact } = body;
 
-  // Minimal validation — we still want to capture partial leads.
-  if (!contact?.name || !contact?.phone) {
+  // Name, phone and a valid email are required.
+  const emailValid =
+    !!contact?.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email.trim());
+  if (!contact?.name || !contact?.phone || !emailValid) {
     return NextResponse.json(
-      { error: "Name and phone are required." },
+      { error: "Name, phone and a valid email are required." },
       { status: 400 },
     );
   }

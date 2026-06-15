@@ -1,13 +1,13 @@
-// Central business / brand configuration for Orca Window Cleaning.
+// Central business / brand configuration for Stingray Cleaning.
 // Update these values in one place and the whole site follows.
 
 export const site = {
-  name: "Orca Window Cleaning",
-  shortName: "Orca",
+  name: "Stingray Cleaning",
+  shortName: "Stingray",
   tagline: "Spotless windows. Stunning views.",
   description:
-    "Orca Window Cleaning delivers streak-free, professional residential window cleaning across Greater Victoria, BC. Honest pricing and an instant online quote in under 60 seconds.",
-  url: "https://orcawindowcleaning.ca",
+    "Stingray Cleaning delivers streak-free, professional residential window cleaning across Greater Victoria, BC. Honest pricing and an instant online quote in under 60 seconds.",
+  url: "https://stingraycleaning.ca",
   phone: "416-579-3253",
   phoneHref: "tel:+14165793253",
   email: "mshapovalov7@gmail.com",

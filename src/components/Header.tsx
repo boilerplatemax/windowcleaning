@@ -8,7 +8,7 @@ import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui";
 import { clsx } from "@/lib/clsx";
 
-export function Header() {
+export function Header({ logoSrc }: { logoSrc?: string }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -31,7 +31,7 @@ export function Header() {
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-3 sm:px-8">
         <div className="text-ink">
-          <Logo light />
+          <Logo light src={logoSrc} />
         </div>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -96,11 +96,13 @@ export function Header() {
       {/* Mobile menu */}
       <div
         className={clsx(
-          "overflow-hidden border-t border-line bg-surface transition-[max-height] duration-300 lg:hidden",
-          open ? "max-h-96" : "max-h-0",
+          "overflow-hidden border-t bg-surface transition-[max-height] duration-300 lg:hidden",
+          open
+            ? "max-h-[80vh] overflow-y-auto border-line shadow-card"
+            : "max-h-0 border-transparent",
         )}
       >
-        <nav className="flex flex-col gap-1 px-5 py-4">
+        <nav className="flex flex-col gap-1 px-5 pb-6 pt-4">
           {nav.map((item) => (
             <Link
               key={item.href}
@@ -116,14 +118,19 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-          <div className="mt-2 flex flex-col gap-3 border-t border-line pt-4">
+          <div className="mt-3 flex flex-col gap-3 border-t border-line pt-4">
             <a
               href={site.phoneHref}
               className="display text-center font-medium text-ink/70"
             >
               Call {site.phone}
             </a>
-            <Button href="/quote" size="lg">
+            <Button
+              href="/quote"
+              size="lg"
+              className="w-full"
+              onClick={() => setOpen(false)}
+            >
               Get a Quote
             </Button>
           </div>

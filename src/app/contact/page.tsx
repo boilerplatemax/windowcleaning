@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: `Get in touch with Orca Window Cleaning. Call ${site.phone} or request a free window cleaning quote in Greater Victoria, BC.`,
+  description: `Get in touch with Stingray Cleaning. Call ${site.phone} or request a free window cleaning quote in Greater Victoria, BC.`,
   alternates: { canonical: "/contact" },
 };
 

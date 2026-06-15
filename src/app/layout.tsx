@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
+import { photo } from "@/lib/photos";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
@@ -16,8 +17,10 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const ogImage =
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80";
+const ogImage = photo(
+  "home-hero",
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -33,7 +36,7 @@ export const metadata: Metadata = {
     "Greater Victoria window cleaners",
     "gutter cleaning",
     "window cleaning quote",
-    "Orca Window Cleaning",
+    "Stingray Cleaning",
   ],
   authors: [{ name: site.name }],
   alternates: { canonical: "/" },
@@ -49,7 +52,7 @@ export const metadata: Metadata = {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: "Sparkling clean windows by Orca Window Cleaning",
+        alt: "Sparkling clean windows by Stingray Cleaning",
       },
     ],
   },
@@ -87,6 +90,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const logoSrc = photo("logo-landscape", "") || undefined;
   return (
     <html
       lang="en"
@@ -97,9 +101,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Header />
+        <Header logoSrc={logoSrc} />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer logoSrc={logoSrc} />
       </body>
     </html>
   );
