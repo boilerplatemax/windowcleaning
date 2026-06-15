@@ -128,9 +128,6 @@ export default function GalleryPage() {
                 key={i}
                 className="group relative overflow-hidden rounded-2xl border border-line shadow-card"
               >
-                <span className="absolute left-3 top-3 z-10 rounded-full bg-ink/80 px-3 py-1 text-xs font-semibold text-cream">
-                  Before → After
-                </span>
                 <div className="relative aspect-[4/3] w-full">
                   <Image
                     src={p.src}

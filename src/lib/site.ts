@@ -7,7 +7,7 @@ export const site = {
   tagline: "Spotless windows. Stunning views.",
   description:
     "Stingray Cleaning delivers streak-free, professional residential window cleaning across Greater Victoria, BC. Honest pricing and an instant online quote in under 60 seconds.",
-  url: "https://stingraycleaning.ca",
+  url: "https://stingraycleaning.com",
   phone: "416-579-3253",
   phoneHref: "tel:+14165793253",
   email: "mshapovalov7@gmail.com",
