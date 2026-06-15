@@ -48,9 +48,14 @@ export function QuoteWizard() {
   // Live preview of the price so users feel the value building up.
   const preview = useMemo(() => calculateQuote(input), [input]);
 
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+    (contact.email ?? "").trim(),
+  );
+
   const canContinue = () => {
     if (step === 1) return input.address.trim().length > 3;
-    if (step === 5) return contact.name.trim() && contact.phone.trim();
+    if (step === 5)
+      return Boolean(contact.name.trim() && contact.phone.trim() && emailValid);
     return true;
   };
 
@@ -99,7 +104,7 @@ export function QuoteWizard() {
         </div>
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
           <div
-            className="h-full ocean-grad transition-all duration-500"
+            className="h-full bg-ocean-deep transition-all duration-500"
             style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
           />
         </div>
@@ -243,13 +248,37 @@ export function QuoteWizard() {
             <button
               type="button"
               onClick={() => setAdvanced((v) => !v)}
-              className="text-sm text-ocean-deep underline-offset-4 hover:underline"
+              aria-expanded={advanced}
+              className={clsx(
+                "flex w-full items-center gap-3 rounded-xl border px-4 py-3.5 text-left transition-all",
+                advanced
+                  ? "border-ocean bg-ocean/10"
+                  : "border-ocean/40 bg-surface hover:border-ocean hover:bg-ocean/5",
+              )}
             >
-              {advanced ? "Hide" : "I'd rather estimate windows myself"}
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ocean-deep/10 text-lg">
+                ✏️
+              </span>
+              <span className="flex-1">
+                <span className="display block text-sm font-semibold text-ocean-deep">
+                  Rather count the windows yourself?
+                </span>
+                <span className="block text-xs text-ink/60">
+                  Know your number? Enter it for a tighter estimate.
+                </span>
+              </span>
+              <span
+                className={clsx(
+                  "text-xl leading-none text-ocean-deep transition-transform",
+                  advanced && "rotate-45",
+                )}
+              >
+                +
+              </span>
             </button>
 
             {advanced && (
-              <div className="rounded-xl border border-line bg-surface-2 p-4">
+              <div className="animate-fade-up rounded-xl border border-line bg-surface-2 p-4">
                 <label className="display text-sm font-medium text-ink">
                   Approx. number of windows
                 </label>
@@ -266,7 +295,7 @@ export function QuoteWizard() {
                   placeholder="e.g. 15 (leave blank if not sure)"
                   className="mt-2 w-full rounded-lg border border-line bg-surface px-4 py-3 text-ink placeholder:text-ink/40 focus:border-ocean"
                 />
-                <p className="mt-2 text-xs text-ink/50">
+                <p className="mt-2 text-xs text-ink/55">
                   Windows, not panes. A guess is totally fine.
                 </p>
               </div>
@@ -353,12 +382,18 @@ export function QuoteWizard() {
                 required
               />
               <Field
-                label="Email (optional)"
+                label="Email"
                 value={contact.email ?? ""}
                 onChange={(v) => setContact((p) => ({ ...p, email: v }))}
                 placeholder="you@email.com"
                 type="email"
+                required
               />
+              {(contact.email ?? "").trim().length > 0 && !emailValid && (
+                <p className="-mt-2 text-xs text-red-600">
+                  Please enter a valid email address.
+                </p>
+              )}
 
               <div>
                 <label className="display text-sm font-medium text-ink">
@@ -416,7 +451,7 @@ export function QuoteWizard() {
               className={clsx(
                 "display rounded-full px-7 py-3 text-sm font-semibold transition-all",
                 canContinue()
-                  ? "ocean-grad text-white hover:brightness-105"
+                  ? "bg-ocean-deep text-white hover:bg-ocean"
                   : "cursor-not-allowed bg-surface-2 text-ink/40",
               )}
             >
@@ -431,7 +466,7 @@ export function QuoteWizard() {
               className={clsx(
                 "display rounded-full px-7 py-3 text-sm font-semibold transition-all",
                 canContinue() && !submitting
-                  ? "ocean-grad text-white hover:brightness-105"
+                  ? "bg-ocean-deep text-white hover:bg-ocean"
                   : "cursor-not-allowed bg-surface-2 text-ink/40",
               )}
             >

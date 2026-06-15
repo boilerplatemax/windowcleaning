@@ -2,13 +2,13 @@ import Link from "next/link";
 import { nav, site } from "@/lib/site";
 import { Logo } from "@/components/Logo";
 
-export function Footer() {
+export function Footer({ logoSrc }: { logoSrc?: string }) {
   return (
     <footer className="deep-sea border-t border-smoke">
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Logo />
+            <Logo src={logoSrc} />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/70">
               Professional residential window cleaning across{" "}
               {site.serviceArea}. We bring back the view with a streak-free

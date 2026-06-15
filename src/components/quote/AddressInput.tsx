@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 declare global {
   interface Window {
     google?: typeof google;
-    __orcaMapsLoading?: Promise<void>;
+    __stingrayMapsLoading?: Promise<void>;
   }
 }
 
@@ -21,9 +21,9 @@ const KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 function loadMaps(): Promise<void> {
   if (typeof window === "undefined") return Promise.resolve();
   if (window.google?.maps?.places) return Promise.resolve();
-  if (window.__orcaMapsLoading) return window.__orcaMapsLoading;
+  if (window.__stingrayMapsLoading) return window.__stingrayMapsLoading;
 
-  window.__orcaMapsLoading = new Promise<void>((resolve, reject) => {
+  window.__stingrayMapsLoading = new Promise<void>((resolve, reject) => {
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${KEY}&libraries=places`;
     script.async = true;
@@ -32,7 +32,7 @@ function loadMaps(): Promise<void> {
     script.onerror = () => reject(new Error("Failed to load Google Maps"));
     document.head.appendChild(script);
   });
-  return window.__orcaMapsLoading;
+  return window.__stingrayMapsLoading;
 }
 
 export function AddressInput({

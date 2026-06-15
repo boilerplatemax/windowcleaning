@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button, Container, SectionHeading } from "@/components/ui";
-import { Icon, Stars, type IconName } from "@/components/Icon";
+import { Icon, Stars } from "@/components/Icon";
 import { site } from "@/lib/site";
+import { photo } from "@/lib/photos";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <TrustBar />
-      <WhyUs />
       <Showcase />
       <Services />
       <HowItWorks />
@@ -28,15 +28,20 @@ function Hero() {
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <Image
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=2000&q=80"
-          alt="Sunlit modern home with floor-to-ceiling windows and an ocean view"
+          src={photo(
+            "home-hero",
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=2000&q=80",
+          )}
+          alt="Streak-free clean window with a clear view"
           fill
           priority
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/15" />
-        <div className="absolute inset-0 bg-gradient-to-t from-paper via-transparent to-transparent" />
+        {/* Strong, even overlay so the white headline always has dark behind
+            it — no faded white-on-white. */}
+        <div className="absolute inset-0 bg-ink/55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/70 to-ink/30" />
       </div>
 
       <Container className="relative flex min-h-[86vh] flex-col justify-center py-24 sm:py-28">
@@ -99,72 +104,21 @@ function TrustBar() {
   );
 }
 
-function WhyUs() {
-  const cards: { icon: IconName; title: string; body: string }[] = [
-    {
-      icon: "tag",
-      title: "Honest, upfront pricing",
-      body: "Transparent quotes with no hidden fees. The number you see is the number you pay — guaranteed.",
-    },
-    {
-      icon: "droplet",
-      title: "Streak-free shine",
-      body: "Professional-grade tools and purified water leave every pane crystal-clear, inside and out.",
-    },
-    {
-      icon: "clock",
-      title: "Reliable & on time",
-      body: "We show up when we say we will, treat your home with care, and leave no trace behind.",
-    },
-    {
-      icon: "shieldCheck",
-      title: "Fully insured crew",
-      body: "Bonded and insured for total peace of mind. Your home is in good, careful hands.",
-    },
-  ];
-  return (
-    <section className="py-20 sm:py-28">
-      <Container>
-        <SectionHeading
-          eyebrow="Why Orca"
-          title="Window cleaning, done right"
-          subtitle="A modern, professional crew that takes pride in every pane."
-        />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {cards.map((c) => (
-            <div
-              key={c.title}
-              className="rounded-2xl border border-line bg-surface p-6 shadow-card transition-all hover:-translate-y-1 hover:border-ocean/40"
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-ocean/10 text-ocean-deep">
-                <Icon name={c.icon} className="h-6 w-6" />
-              </span>
-              <h3 className="display mt-4 text-lg font-semibold text-ink">
-                {c.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink/65">
-                {c.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
 function Showcase() {
   return (
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <Image
-          src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=2000&q=80"
+          src={photo(
+            "home-see-the-difference",
+            "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=2000&q=80",
+          )}
           alt="Bright living room with spotless floor-to-ceiling windows letting in the morning light"
           fill
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/45 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/65 to-ink/20" />
       </div>
       <Container className="relative flex min-h-[60vh] items-center py-24">
         <div className="max-w-xl">
@@ -176,7 +130,7 @@ function Showcase() {
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-cream/85">
             Grime builds up slowly — you don&apos;t notice until it&apos;s gone.
-            One visit from Orca and your rooms feel brighter, your glass
+            One visit from Stingray and your rooms feel brighter, your glass
             disappears, and the view does the talking.
           </p>
           <div className="mt-8">
@@ -194,17 +148,26 @@ function Services() {
   const services = [
     {
       title: "Exterior Window Cleaning",
-      img: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=1200&q=80",
+      img: photo(
+        "service-exterior",
+        "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=1200&q=80",
+      ),
       desc: "Spotless, streak-free glass on every outside pane.",
     },
     {
       title: "Interior Window Cleaning",
-      img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
+      img: photo(
+        "service-interior",
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
+      ),
       desc: "Crystal-clear views from the comfort of your couch.",
     },
     {
       title: "Screens, Tracks & Frames",
-      img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+      img: photo(
+        "service-screens",
+        "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+      ),
       desc: "We clear out the dust and grime from every corner.",
     },
   ];
@@ -305,7 +268,10 @@ function PricingTeaser() {
     <section className="relative isolate overflow-hidden border-y border-smoke">
       <div className="absolute inset-0 -z-10">
         <Image
-          src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=2000&q=80"
+          src={photo(
+            "home-pricing-bg",
+            "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=2000&q=80",
+          )}
           alt="Modern glass home glowing at dusk"
           fill
           sizes="100vw"
@@ -412,17 +378,19 @@ function FAQ() {
           {faqs.map((f) => (
             <details
               key={f.q}
-              className="group rounded-2xl border border-line bg-surface p-5 shadow-card [&_summary::-webkit-details-marker]:hidden"
+              className="group rounded-2xl border border-line bg-surface shadow-card [&_summary::-webkit-details-marker]:hidden"
             >
-              <summary className="flex cursor-pointer items-center justify-between gap-4">
+              <summary className="flex w-full cursor-pointer select-none items-center justify-between gap-4 p-5">
                 <span className="display text-base font-medium text-ink">
                   {f.q}
                 </span>
-                <span className="text-ocean-deep transition-transform group-open:rotate-45">
+                <span className="text-2xl leading-none text-ocean-deep transition-transform group-open:rotate-45">
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-sm leading-relaxed text-ink/70">{f.a}</p>
+              <p className="px-5 pb-5 text-sm leading-relaxed text-ink/75">
+                {f.a}
+              </p>
             </details>
           ))}
         </div>
