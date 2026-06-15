@@ -49,9 +49,10 @@ function Hero() {
           <span className="eyebrow text-xs text-ocean-soft sm:text-sm">
             Local crew · {site.serviceArea}
           </span>
-          <h1 className="display mt-4 text-5xl font-bold leading-[1.02] text-white sm:text-6xl lg:text-7xl">
+          <h1 className="display mt-4 text-5xl font-bold leading-[1.1] text-white sm:text-6xl lg:text-7xl">
             Spotless windows.
-            <span className="block text-ocean-grad">Stunning views.</span>
+            {/* pb-1 keeps the gradient clip from cutting off the descenders. */}
+            <span className="block pb-1 text-ocean-grad">Stunning views.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/85">
             Professional residential window cleaning across Greater Victoria.

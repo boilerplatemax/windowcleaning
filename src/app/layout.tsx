@@ -91,6 +91,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const logoSrc = photo("logo-landscape", "") || undefined;
+  // The footer sits on a dark band, so prefer a white logo variant if present.
+  const footerLogoSrc = photo("logo-landscape-white", "") || logoSrc;
   return (
     <html
       lang="en"
@@ -103,7 +105,7 @@ export default function RootLayout({
         />
         <Header logoSrc={logoSrc} />
         <main className="flex-1">{children}</main>
-        <Footer logoSrc={logoSrc} />
+        <Footer logoSrc={footerLogoSrc} />
       </body>
     </html>
   );

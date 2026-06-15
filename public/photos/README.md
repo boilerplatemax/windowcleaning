@@ -13,10 +13,11 @@ changes needed.
 
 ## Logos
 
-| File name        | Where it shows         | Notes                                  |
-| ---------------- | ---------------------- | -------------------------------------- |
-| `logo-landscape` | Header + footer        | Graphic **+ text**, wide. Shown ~40px tall. |
-| `logo-square`    | (reserved)             | Graphic only. Keep handy for favicon/social. |
+| File name              | Where it shows  | Notes                                  |
+| ---------------------- | --------------- | -------------------------------------- |
+| `logo-landscape`       | Header          | Graphic **+ text**, wide. Shown ~40px tall. For the light header. |
+| `logo-landscape-white` | Footer          | A **white** version of the landscape logo for the dark footer band. Falls back to `logo-landscape` if absent. |
+| `logo-square`          | (reserved)      | Graphic only. Keep handy for favicon/social. |
 
 If no `logo-landscape` file is present, a clean built-in "Stingray" wordmark is
 shown instead, so nothing breaks.

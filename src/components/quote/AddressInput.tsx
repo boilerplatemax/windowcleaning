@@ -3,10 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Address field with optional Google Places autocomplete.
- * If NEXT_PUBLIC_GOOGLE_MAPS_API_KEY is set, we load the Places library and
- * attach an autocomplete widget. Otherwise we fall back to a plain text input
- * so the quote flow keeps working without any keys configured.
+ * Address field with autocomplete.
+ *
+ * 1. If NEXT_PUBLIC_GOOGLE_MAPS_API_KEY is set, we load Google Places and attach
+ *    its autocomplete widget (best quality).
+ * 2. Otherwise we fall back to a free, keyless autocomplete powered by Photon
+ *    (OpenStreetMap data, CORS-friendly), biased to Greater Victoria and
+ *    filtered to Canada. No API key, no billing — works out of the box.
+ * 3. If both are unavailable (e.g. offline), it degrades to a plain text input.
  */
 
 declare global {
@@ -17,6 +21,9 @@ declare global {
 }
 
 const KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+// Victoria, BC — used to bias the keyless suggestions toward the service area.
+const VICTORIA = { lat: 48.4284, lon: -123.3656 };
 
 function loadMaps(): Promise<void> {
   if (typeof window === "undefined") return Promise.resolve();
@@ -35,6 +42,24 @@ function loadMaps(): Promise<void> {
   return window.__stingrayMapsLoading;
 }
 
+type PhotonProps = {
+  name?: string;
+  housenumber?: string;
+  street?: string;
+  city?: string;
+  state?: string;
+  postcode?: string;
+  country?: string;
+  countrycode?: string;
+};
+
+function formatPhoton(p: PhotonProps): string {
+  const line1 = [p.housenumber, p.street || p.name].filter(Boolean).join(" ");
+  return [line1 || p.name, p.city, p.state, p.postcode]
+    .filter(Boolean)
+    .join(", ");
+}
+
 export function AddressInput({
   value,
   onChange,
@@ -43,8 +68,15 @@ export function AddressInput({
   onChange: (v: string) => void;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [ready, setReady] = useState(false);
+  const [googleReady, setGoogleReady] = useState(false);
 
+  // Keyless fallback state.
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [open, setOpen] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(-1);
+  const skipNextFetch = useRef(false);
+
+  // --- Google Places (only when a key is configured) ---
   useEffect(() => {
     if (!KEY || !inputRef.current) return;
     let ac: google.maps.places.Autocomplete | undefined;
@@ -60,17 +92,84 @@ export function AddressInput({
           const place = ac?.getPlace();
           if (place?.formatted_address) onChange(place.formatted_address);
         });
-        setReady(true);
+        setGoogleReady(true);
       })
-      .catch(() => setReady(false));
+      .catch(() => setGoogleReady(false));
     return () => {
-      if (ac && window.google) window.google.maps.event.clearInstanceListeners(ac);
+      if (ac && window.google)
+        window.google.maps.event.clearInstanceListeners(ac);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // --- Keyless Photon autocomplete (only when there's no Google key) ---
+  useEffect(() => {
+    if (KEY) return;
+    if (skipNextFetch.current) {
+      skipNextFetch.current = false;
+      return;
+    }
+    const q = value.trim();
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      if (q.length < 4) {
+        setSuggestions([]);
+        setOpen(false);
+        return;
+      }
+      try {
+        const url =
+          `https://photon.komoot.io/api/?q=${encodeURIComponent(q)}` +
+          `&limit=5&lang=en&lat=${VICTORIA.lat}&lon=${VICTORIA.lon}`;
+        const res = await fetch(url, { signal: controller.signal });
+        const data: { features?: { properties: PhotonProps }[] } =
+          await res.json();
+        const list = (data.features ?? [])
+          .map((f) => f.properties)
+          .filter((p) => p.country === "Canada" || p.countrycode === "CA")
+          .map(formatPhoton)
+          .filter((s, i, arr) => s && arr.indexOf(s) === i);
+        setSuggestions(list);
+        setOpen(list.length > 0);
+        setActiveIdx(-1);
+      } catch {
+        // Network hiccup / aborted — quietly keep the plain input usable.
+      }
+    }, 250);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [value]);
+
+  const pick = (s: string) => {
+    skipNextFetch.current = true;
+    onChange(s);
+    setSuggestions([]);
+    setOpen(false);
+    setActiveIdx(-1);
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!open || suggestions.length === 0) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveIdx((i) => (i + 1) % suggestions.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIdx((i) => (i <= 0 ? suggestions.length - 1 : i - 1));
+    } else if (e.key === "Enter" && activeIdx >= 0) {
+      e.preventDefault();
+      pick(suggestions[activeIdx]);
+    } else if (e.key === "Escape") {
+      setOpen(false);
+    }
+  };
+
+  const showList = !KEY && open && suggestions.length > 0;
+
   return (
-    <div>
+    <div className="relative">
       <div className="relative">
         <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-ocean-deep">
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
@@ -82,15 +181,52 @@ export function AddressInput({
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          onKeyDown={onKeyDown}
+          onFocus={() => suggestions.length > 0 && setOpen(true)}
+          onBlur={() => setTimeout(() => setOpen(false), 150)}
           placeholder="Start typing your home address…"
           autoComplete="off"
+          role="combobox"
+          aria-expanded={showList}
+          aria-controls="address-suggestions"
+          aria-autocomplete="list"
           className="w-full rounded-lg border border-line bg-surface py-4 pl-12 pr-4 text-lg text-ink placeholder:text-ink/40 focus:border-ocean"
         />
+
+        {showList && (
+          <ul
+            id="address-suggestions"
+            role="listbox"
+            className="absolute left-0 right-0 top-full z-20 mt-1 overflow-hidden rounded-lg border border-line bg-surface shadow-luxe"
+          >
+            {suggestions.map((s, i) => (
+              <li key={s}>
+                <button
+                  type="button"
+                  // onMouseDown fires before the input's onBlur, so the pick
+                  // registers before the dropdown closes.
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    pick(s);
+                  }}
+                  className={`flex w-full items-start gap-2 px-4 py-3 text-left text-sm ${
+                    i === activeIdx
+                      ? "bg-ocean/10 text-ocean-deep"
+                      : "text-ink/80 hover:bg-surface-2"
+                  }`}
+                >
+                  <span className="mt-0.5 text-ocean-deep">📍</span>
+                  <span>{s}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       <p className="mt-2 text-xs text-ink/55">
-        {KEY && ready
+        {KEY && googleReady
           ? "Pick your address from the suggestions for the fastest quote."
-          : "Enter your street address — we service Victoria & Greater Victoria."}
+          : "Start typing and pick your address from the suggestions — we service Victoria & Greater Victoria."}
       </p>
     </div>
   );
