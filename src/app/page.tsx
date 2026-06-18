@@ -1,13 +1,15 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button, Container, SectionHeading } from "@/components/ui";
-import { Icon, Stars } from "@/components/Icon";
-import { site } from "@/lib/site";
-import { photo } from "@/lib/photos";
+import Image from "next/image"
+import Link from "next/link"
+import { Button, Container, SectionHeading } from "@/components/ui"
+import { Icon, Stars } from "@/components/Icon"
+import { site } from "@/lib/site"
+import { photo } from "@/lib/photos"
+import { Analytics } from "@vercel/analytics/next"
 
 export default function HomePage() {
   return (
     <>
+      <Analytics />
       <Hero />
       <TrustBar />
       <Showcase />
@@ -18,7 +20,7 @@ export default function HomePage() {
       <FAQ />
       <FinalCTA />
     </>
-  );
+  )
 }
 
 /* ----------------------------------------------------------------- */
@@ -84,7 +86,7 @@ function Hero() {
         </div>
       </Container>
     </section>
-  );
+  )
 }
 
 function TrustBar() {
@@ -92,7 +94,7 @@ function TrustBar() {
     { stat: "60 sec", label: "To get a quote" },
     { stat: "100%", label: "Streak-free guarantee" },
     { stat: "Local", label: "Victoria-based crew" },
-  ];
+  ]
   return (
     <section className="border-y border-line bg-surface">
       <Container className="grid grid-cols-1 gap-6 py-8 sm:grid-cols-3">
@@ -106,7 +108,7 @@ function TrustBar() {
         ))}
       </Container>
     </section>
-  );
+  )
 }
 
 function Showcase() {
@@ -146,7 +148,7 @@ function Showcase() {
         </div>
       </Container>
     </section>
-  );
+  )
 }
 
 function Services() {
@@ -175,7 +177,7 @@ function Services() {
       ),
       desc: "We clear out the dust and grime from every corner.",
     },
-  ];
+  ]
   return (
     <section className="border-y border-line bg-surface-2 py-20 sm:py-28">
       <Container>
@@ -215,7 +217,7 @@ function Services() {
         </div>
       </Container>
     </section>
-  );
+  )
 }
 
 function HowItWorks() {
@@ -235,7 +237,7 @@ function HowItWorks() {
       title: "Enjoy the view",
       body: "The crew arrives, cleans every pane, and leaves your windows spotless. Simple as that.",
     },
-  ];
+  ]
   return (
     <section className="py-20 sm:py-28">
       <Container>
@@ -265,7 +267,7 @@ function HowItWorks() {
         </div>
       </Container>
     </section>
-  );
+  )
 }
 
 function PricingTeaser() {
@@ -290,8 +292,7 @@ function PricingTeaser() {
           Honest, upfront pricing
         </span>
         <h2 className="display mx-auto mt-3 max-w-2xl text-3xl font-bold text-white sm:text-5xl">
-          Quotes starting around{" "}
-          <span className="text-ocean-grad">$120</span>
+          Quotes starting around <span className="text-ocean-grad">$120</span>
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-cream/80">
           Every home is different, so we give you a real range up front — no
@@ -304,7 +305,7 @@ function PricingTeaser() {
         </div>
       </Container>
     </section>
-  );
+  )
 }
 
 function Testimonials() {
@@ -327,14 +328,11 @@ function Testimonials() {
       name: "Priya K.",
       area: "Victoria",
     },
-  ];
+  ]
   return (
     <section className="border-y border-line bg-surface-2 py-20 sm:py-28">
       <Container>
-        <SectionHeading
-          eyebrow="Reviews"
-          title="Loved across the coast"
-        />
+        <SectionHeading eyebrow="Reviews" title="Loved across the coast" />
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {reviews.map((r) => (
             <figure
@@ -353,7 +351,7 @@ function Testimonials() {
         </div>
       </Container>
     </section>
-  );
+  )
 }
 
 function FAQ() {
@@ -374,7 +372,7 @@ function FAQ() {
       q: "How soon can you come out?",
       a: "We confirm your quote within 24 hours and usually book within the same week. Need it fast? Give us a call.",
     },
-  ];
+  ]
   return (
     <section className="py-20 sm:py-28">
       <Container className="max-w-3xl">
@@ -401,7 +399,7 @@ function FAQ() {
         </div>
       </Container>
     </section>
-  );
+  )
 }
 
 function FinalCTA() {
@@ -427,5 +425,5 @@ function FinalCTA() {
         </div>
       </Container>
     </section>
-  );
+  )
 }
