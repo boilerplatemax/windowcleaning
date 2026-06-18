@@ -8,6 +8,7 @@ import type {
   QuoteInput,
   QuoteContact,
   QuoteResult,
+  PhotoAttachment,
 } from "@/lib/types";
 import { QuoteResultScreen } from "./QuoteResultScreen";
 import { clsx } from "@/lib/clsx";
@@ -38,7 +39,7 @@ export function QuoteWizard() {
     notes: "",
   });
   const [advanced, setAdvanced] = useState(false);
-  const [photoNames, setPhotoNames] = useState<string[]>([]);
+  const [photos, setPhotos] = useState<File[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<QuoteResult | null>(null);
 
@@ -68,6 +69,7 @@ export function QuoteWizard() {
     setResult(finalResult);
 
     try {
+      const attachments = await buildPhotoAttachments(photos);
       await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -75,7 +77,8 @@ export function QuoteWizard() {
           input,
           contact,
           result: finalResult,
-          photoCount: photoNames.length,
+          photoCount: photos.length,
+          photos: attachments,
         }),
       });
     } catch {
@@ -403,8 +406,8 @@ export function QuoteWizard() {
                 <label className="mt-2 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-line bg-surface-2 px-4 py-6 text-center hover:border-ocean/50">
                   <span className="text-2xl">📸</span>
                   <span className="text-sm text-ink/70">
-                    {photoNames.length > 0
-                      ? `${photoNames.length} photo(s) added`
+                    {photos.length > 0
+                      ? `${photos.length} photo(s) added`
                       : "Tap to add photos of your windows"}
                   </span>
                   <span className="text-xs text-ink/45">
@@ -417,7 +420,7 @@ export function QuoteWizard() {
                     className="hidden"
                     onChange={(e) => {
                       const files = Array.from(e.target.files ?? []);
-                      setPhotoNames(files.map((f) => f.name));
+                      setPhotos(files);
                       set("hasPhotos", files.length > 0);
                     }}
                   />
@@ -481,6 +484,78 @@ export function QuoteWizard() {
       </p>
     </div>
   );
+}
+
+// Keep the email well under typical request/SendGrid size limits.
+const MAX_PHOTOS = 8;
+const MAX_TOTAL_BYTES = 6 * 1024 * 1024; // ~6 MB of (compressed) image data
+
+/**
+ * Turns the customer's uploaded files into base64 attachments for the email.
+ * Images are downscaled/recompressed client-side so they reliably fit, and we
+ * stop once the running total would exceed the size budget.
+ */
+async function buildPhotoAttachments(files: File[]): Promise<PhotoAttachment[]> {
+  const out: PhotoAttachment[] = [];
+  let used = 0;
+
+  for (const file of files.slice(0, MAX_PHOTOS)) {
+    const attachment = await fileToAttachment(file);
+    // base64 inflates size by ~4/3; estimate the real byte cost.
+    const bytes = Math.ceil((attachment.content.length * 3) / 4);
+    if (used + bytes > MAX_TOTAL_BYTES) break;
+    used += bytes;
+    out.push(attachment);
+  }
+
+  return out;
+}
+
+async function fileToAttachment(file: File): Promise<PhotoAttachment> {
+  // Try to compress images via a canvas; fall back to the raw file.
+  if (file.type.startsWith("image/")) {
+    try {
+      return await compressImage(file);
+    } catch {
+      // fall through to raw read
+    }
+  }
+  const content = await fileToBase64(file);
+  return {
+    filename: file.name || "photo",
+    type: file.type || "application/octet-stream",
+    content,
+  };
+}
+
+async function compressImage(file: File): Promise<PhotoAttachment> {
+  const bitmap = await createImageBitmap(file);
+  const maxDim = 1600;
+  const scale = Math.min(1, maxDim / Math.max(bitmap.width, bitmap.height));
+  const width = Math.max(1, Math.round(bitmap.width * scale));
+  const height = Math.max(1, Math.round(bitmap.height * scale));
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("no 2d context");
+  ctx.drawImage(bitmap, 0, 0, width, height);
+  bitmap.close?.();
+
+  const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+  const base64 = dataUrl.split(",")[1] ?? "";
+  const baseName = (file.name || "photo").replace(/\.[^.]+$/, "");
+  return { filename: `${baseName}.jpg`, type: "image/jpeg", content: base64 };
+}
+
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",")[1] ?? "");
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
 }
 
 function StepHeader({

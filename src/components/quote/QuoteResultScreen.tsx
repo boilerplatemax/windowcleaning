@@ -14,6 +14,7 @@ export function QuoteResultScreen({
   input: QuoteInput;
 }) {
   const firstName = contact.name.trim().split(" ")[0] || "there";
+  const sentPhotos = Boolean(input.hasPhotos);
 
   return (
     <div className="mx-auto w-full max-w-2xl animate-fade-up">
@@ -86,26 +87,23 @@ export function QuoteResultScreen({
             within 24 hours.
           </p>
 
-          {/* CTAs */}
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <a
-              href={site.phoneHref}
-              className="display flex items-center justify-center rounded-full bg-ocean-deep px-6 py-3.5 text-sm font-semibold text-white hover:bg-ocean"
-            >
-              📞 Book This Price
-            </a>
-            <a
-              href={`${site.emailHref}?subject=Quote%20confirmation%20for%20${encodeURIComponent(
-                input.address,
-              )}`}
-              className="display flex items-center justify-center rounded-full border border-ocean/50 px-6 py-3.5 text-sm font-semibold text-ocean-deep hover:bg-ocean hover:text-white"
-            >
-              Request Confirmation
-            </a>
+          {/* Confirmation — the request (and any photos) was already emailed
+              to our team on submit, with a reply going to {contact.email}. */}
+          <div className="mt-6 rounded-2xl border border-emerald-600/30 bg-emerald-600/10 px-5 py-4 text-center">
+            <p className="display text-sm font-semibold text-emerald-700">
+              ✓ Your request is on its way
+            </p>
+            <p className="mt-1 text-sm text-ink/70">
+              We&apos;ve sent your quote details
+              {sentPhotos ? " and photos" : ""} to our team. We&apos;ll reply to{" "}
+              <span className="font-medium text-ink">{contact.email}</span> within
+              24 hours.
+            </p>
           </div>
+
           <a
             href={site.phoneHref}
-            className="mt-3 block text-center text-sm text-ink/60 hover:text-ocean-deep"
+            className="mt-4 block text-center text-sm text-ink/60 hover:text-ocean-deep"
           >
             Or just talk to us — {site.phone}
           </a>

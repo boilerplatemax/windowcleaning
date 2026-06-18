@@ -42,3 +42,13 @@ export interface QuoteContact {
   email?: string;
   notes?: string;
 }
+
+/** A photo the customer uploaded, ready to be attached to the email. */
+export interface PhotoAttachment {
+  /** File name shown in the email client. */
+  filename: string;
+  /** MIME type, e.g. "image/jpeg". */
+  type: string;
+  /** Base64-encoded file contents (no data: URI prefix). */
+  content: string;
+}

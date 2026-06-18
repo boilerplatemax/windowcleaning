@@ -1,17 +1,27 @@
 import sgMail from "@sendgrid/mail";
 import { site } from "./site";
 import { formatCAD } from "./pricing";
-import type { QuoteInput, QuoteContact, QuoteResult } from "./types";
+import type {
+  QuoteInput,
+  QuoteContact,
+  QuoteResult,
+  PhotoAttachment,
+} from "./types";
 
 /**
  * Sends the lead-notification email to the business via SendGrid.
  * No-ops (returns false) when SENDGRID_API_KEY is not configured.
+ *
+ * The customer's email is set as Reply-To, so the owner can reply to the
+ * quote straight from their inbox. Any photos the customer uploaded are
+ * included as attachments.
  */
 export async function sendQuoteEmail(payload: {
   input: QuoteInput;
   contact: QuoteContact;
   result: QuoteResult;
   photoCount: number;
+  photos?: PhotoAttachment[];
 }): Promise<boolean> {
   const apiKey = process.env.SENDGRID_API_KEY;
   const to = process.env.QUOTE_NOTIFICATION_EMAIL || site.email;
@@ -77,13 +87,24 @@ export async function sendQuoteEmail(payload: {
     </div>
   </div>`;
 
+  const attachments = (payload.photos ?? [])
+    .filter((p) => p.content)
+    .map((p) => ({
+      content: p.content,
+      filename: p.filename || "photo.jpg",
+      type: p.type || "application/octet-stream",
+      disposition: "attachment" as const,
+    }));
+
   try {
     await sgMail.send({
       to,
       from,
+      // Reply-To is the customer so the owner can reply from their inbox.
       replyTo: contact.email || undefined,
       subject: `New Quote: ${contact.name} — ${formatCAD(result.midpoint)} (${input.address})`,
       html,
+      ...(attachments.length ? { attachments } : {}),
     });
     return true;
   } catch (err) {
