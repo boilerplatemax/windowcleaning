@@ -92,11 +92,10 @@ function TrustBar() {
     { stat: "60 sec", label: "To get a quote" },
     { stat: "100%", label: "Streak-free guarantee" },
     { stat: "Local", label: "Victoria-based crew" },
-    { stat: "Insured", label: "& fully bonded" },
   ];
   return (
     <section className="border-y border-line bg-surface">
-      <Container className="grid grid-cols-2 gap-6 py-8 md:grid-cols-4">
+      <Container className="grid grid-cols-1 gap-6 py-8 sm:grid-cols-3">
         {items.map((i) => (
           <div key={i.label} className="text-center">
             <p className="display text-2xl font-bold text-ocean-deep sm:text-3xl">
