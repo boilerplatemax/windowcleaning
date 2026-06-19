@@ -312,39 +312,54 @@ function Testimonials() {
   const reviews = [
     {
       quote:
-        "Booked in two minutes and my windows have never looked better. Professional, friendly, and spotless.",
-      name: "Marie T.",
-      area: "Oak Bay",
+        "What an excellent service! Max knew how to pay attention to details. He did an excellent job with the window cleaning but he went above and beyond with cleaning the screens and treating my home with care. Thank you for a job well done!",
+      name: "Danielle",
+      source: "Google review",
     },
     {
       quote:
-        "Honest pricing, super friendly crew, and a flawless job. You can actually see the ocean from my place now!",
-      name: "Dave R.",
-      area: "Saanich",
+        "Our excess pollen this spring left my windows dirtier than usual. Max made them sparkle like I have never seen before. I can't recommend his services enough. He was on time, hard-working and dedicated to the job at hand with an impeccable eye for detail. He really cares about customer satisfaction, which is so refreshing in today's world.",
+      name: "Kathleen",
+      source: "Google review",
     },
     {
       quote:
-        "Showed up on time, did the inside and out, left zero streaks. Easily the best window cleaners we've used.",
-      name: "Priya K.",
-      area: "Victoria",
+        "Excellent job! Max is friendly, detail oriented, and dedicated to his craft. My windows look amazing, even the hard to reach skylights. I would use Stingray Cleaning again, and definitely recommend.",
+      name: "RL W",
+      source: "Google review",
     },
   ]
   return (
     <section className="border-y border-line bg-surface-2 py-20 sm:py-28">
       <Container>
-        <SectionHeading eyebrow="Reviews" title="Loved across the coast" />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <SectionHeading
+          eyebrow="Reviews"
+          title="Loved across the coast"
+          subtitle="Real 5-star reviews from our Google customers."
+        />
+        <div className="mt-14 grid items-start gap-6 md:grid-cols-3">
           {reviews.map((r) => (
             <figure
               key={r.name}
-              className="rounded-2xl border border-line bg-surface p-6 shadow-card"
+              className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 shadow-card"
             >
               <Stars className="text-ocean" />
-              <blockquote className="mt-4 text-sm leading-relaxed text-ink/80">
+              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-ink/80">
                 &ldquo;{r.quote}&rdquo;
               </blockquote>
-              <figcaption className="display mt-4 text-sm font-semibold text-ocean-deep">
-                {r.name} <span className="text-ink/45">· {r.area}</span>
+              <figcaption className="mt-5 flex items-center gap-3 border-t border-line pt-4">
+                <span
+                  aria-hidden="true"
+                  className="display flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ocean text-base font-semibold text-white"
+                >
+                  {r.name.charAt(0)}
+                </span>
+                <span>
+                  <span className="display block text-sm font-semibold text-ocean-deep">
+                    {r.name}
+                  </span>
+                  <span className="block text-xs text-ink/45">{r.source}</span>
+                </span>
               </figcaption>
             </figure>
           ))}
